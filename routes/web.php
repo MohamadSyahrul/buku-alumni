@@ -21,4 +21,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/dashboard-analytics', function () {
+    return view('pages.dashboard-analytics');
+});
+Route::get('/dahboard-ecommerce', function () {
+    return view('pages.dashboard-ecommerce');
+});
+
 require __DIR__.'/auth.php';
