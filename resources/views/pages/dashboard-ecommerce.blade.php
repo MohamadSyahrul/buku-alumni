@@ -1,7 +1,8 @@
 @extends('layouts.master')
-@section('yeild')
+@section('title')
 Dashboard ecommerce - Vuexy - Bootstrap HTML admin template
 @endsection
+
 @section('content')
 <div class="content-overlay"></div>
 <div class="header-navbar-shadow"></div>
