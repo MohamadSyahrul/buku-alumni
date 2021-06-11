@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+//Mahasiswa
+use App\Http\Controllers\Mahasiswa\ProfileController;
+use App\Http\Controllers\Mahasiswa\AlbumAlumniController;
+//Akademik
+use App\Http\Controllers\Akademik\AlbumController;
+//All
+use App\Http\Controllers\AlumniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +20,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Akademik
+Route::resource('album-akademik', AlbumController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy'
+])->middleware(['auth']);
 
+//Mahasiswa
+Route::resource('album-alumni', AlbumAlumniController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy'
+])->middleware(['auth']);
+Route::resource('profile', ProfileController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy'
+])->middleware(['auth']);
+
+//All
+Route::get('/', function () {
+    return view('auth.login');
+});
+Route::resource('alumni', AlumniController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy'
+])->middleware(['auth']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/dashboard-analytics', function () {
-    return view('pages.dashboard-analytics');
-});
-Route::get('/dahboard-ecommerce', function () {
-    return view('pages.dashboard-ecommerce');
-});
+
+
+// Route::get('/dashboard-analytics', function () {
+//     return view('pages.dashboard-analytics');
+// });
+// Route::get('/dahboard-ecommerce', function () {
+//     return view('pages.dashboard-ecommerce');
+// });
 
 require __DIR__.'/auth.php';
