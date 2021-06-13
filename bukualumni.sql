@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2021 at 10:29 AM
+-- Generation Time: Jun 13, 2021 at 05:02 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -143,6 +143,8 @@ CREATE TABLE `profil_mahasiswas` (
   `judul_laporan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tahun_lulus` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `angkatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `telepon` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foto` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `hapus` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -153,11 +155,9 @@ CREATE TABLE `profil_mahasiswas` (
 -- Dumping data for table `profil_mahasiswas`
 --
 
-INSERT INTO `profil_mahasiswas` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `prodi`, `alamat`, `lama_studi`, `judul_laporan`, `tahun_lulus`, `angkatan`, `user_id`, `hapus`, `created_at`, `updated_at`) VALUES
-(1, '36115577', 'Muhammad Nabil Tamami', 'Banyuwangi', '2021-06-11', 'laki-laki', 'Teknik Informatika', 'Jalan Imam Bonjol No. 42, Tukang Kayu Banyuwangi', '5 Tahun 6 bulan', 'Sistem Pendeteksi Maling Berbasis amukan Warga', '2020', '12', 1, 0, '2021-06-10 22:55:30', '2021-06-10 22:55:30'),
-(2, '36115578', 'Tama', 'Banyuwangi', '2021-06-12', 'laki-laki', 'Taknik Mesin', 'Jalan Imam Bonjol No. 42, Tukang Kayu Banyuwangi', '5 Tahun 6 bulan', 'Sistem Pendeteksi Maling Berbasis amukan Warga', '2020', '12', 3, 0, '2021-06-10 23:38:28', '2021-06-10 23:38:28'),
-(3, '36115579', 'Nata', 'Banyuwangi', '2021-06-13', 'laki-laki', 'Teknik Sipil', 'DS. BANGOREJO', '5 Tahun 6 bulan', 'Sistem Pendeteksi Maling Berbasis amukan Warga', '2020', '12', 4, 0, '2021-06-11 00:19:18', '2021-06-11 00:19:18'),
-(4, 'Nita', 'Nita', 'Banyuwangi', '2021-06-14', 'laki-laki', 'Manajemen Bisnis Pariwisata', 'DS. BANGOREJO', '5 Tahun 6 bulan', 'Sistem Pendeteksi Maling Berbasis amukan Warga', '2020', '12', 5, 0, '2021-06-11 00:31:38', '2021-06-11 00:31:38');
+INSERT INTO `profil_mahasiswas` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `prodi`, `alamat`, `lama_studi`, `judul_laporan`, `tahun_lulus`, `angkatan`, `telepon`, `foto`, `user_id`, `hapus`, `created_at`, `updated_at`) VALUES
+(1, '361855401098', 'DELLA ', 'Banyuwangi', '2021-06-12', 'perempuan', 'Teknik Informatika', 'Banyuwangi', '5 Tahun 6 bulan', 'Aplikasi Buku Alumni Berbasis Web dengan Framework Laravel', '2021', '13', '08236823919', '361855401098-DELLA_PRISKILA-favicon.ico', 2, 0, '2021-06-13 06:43:10', '2021-06-13 06:43:10'),
+(2, '361855401099', 'PRISKILA', 'Banyuwangi', '2021-06-14', 'laki-laki', 'Teknik Informatika', 'Banyuwangi', '4 Tahun 2 bulan', 'Aplikasi Buku Alumni Berbasis Android', '2021', '13', '08222212121212', NULL, 3, 0, '2021-06-13 07:22:38', '2021-06-13 07:22:38');
 
 -- --------------------------------------------------------
 
@@ -180,11 +180,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 'nabil', 'nabil@gmail.com', '$2y$10$1EDXqwueCW7rgP0GOXEQS.GSEwMEAOmaNALHa9euhXDYk0Y/wK36q', 'mahasiswa', NULL, NULL),
-(2, 'akademik', 'akademik@gmail.com', '$2y$10$uwjd4Ke7Sjj4ZInPRIy7Uu320epA3mG5NFd.mDy3rbchJWYCXokIG', 'akademik', NULL, NULL),
-(3, 'tama', 'tama@gmail.com', '$2y$10$B0Rf6ik1sWjjKkXWazbP/ulqAMH.Je5ncvYjNJxsXmTZ2XlkeiA.6', 'tama', NULL, NULL),
-(4, 'Nata', 'Nata@gmail.com', '$2y$10$2ttwu9u1YfGtYM8vKT36dOsJetAnsy4JpAE1bMtly.NSFM1hOS2ry', 'Nata', NULL, NULL),
-(5, 'Nita', 'Nita@gmail.com', '$2y$10$Sn25oTDLyABjxnbApJLPCehI8uoggZR3.6TP1VfoV6qAG6.LYAk1m', 'Nita', NULL, NULL);
+(1, 'Priskila', 'priskiladella@gmail.com', '$2y$10$aBNK00zGuhceJC106rLrROYv2ucTJpurZLn2JRLJ.5gMnD.Db.msS', 'akademik', NULL, NULL),
+(2, 'DELLA', 'dellapriskila@gmail.com', '$2y$10$fPGY0N.lGK9Di4dETk19IOUi7qlgn0jktTV2TKhLJGME1af37EjQm', 'mahasiswa', NULL, NULL),
+(3, 'DELLA PRISKILA', 'dellapriskila2@gmail.com', '$2y$10$td.v6Uo54FaM9Ck8XALaeeizM862xJDtxAO9OAOJJIXDt3RBou/RK', 'mahasiswa', NULL, NULL),
+(4, 'PRISKILA DELLA', 'dellapriskila3@gmail.com', '$2y$10$roFhdy1XUjAttiMNgTAdXeskGyF6j.NkNcxwBDlTmxi97ugfGF2vS', 'mahasiswa', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -266,13 +265,13 @@ ALTER TABLE `prodi_alumnis`
 -- AUTO_INCREMENT for table `profil_mahasiswas`
 --
 ALTER TABLE `profil_mahasiswas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

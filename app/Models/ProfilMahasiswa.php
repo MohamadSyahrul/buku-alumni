@@ -24,6 +24,8 @@ class ProfilMahasiswa extends Model
         'judul_laporan',
         'tahun_lulus',
         'angkatan',
+        'telepon',
+        'foto',
         'user_id',
         'created_at',
         'updated_at',

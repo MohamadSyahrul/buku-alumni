@@ -16,7 +16,7 @@ foreach ($mahasiswa as $row){
         <div class="col-md-<?php echo $bootstrapColWidth; ?>">
             <div class="form-group row">
               <div class="col-sm-2 mb-3 mb-sm-0">
-                 <img src="{{ asset('Poliwangi Logo.png')}}">
+                 <img src="{{ asset('Foto-Mahasiswa/'.$row->foto) }}">
               </div>
               <div class="col-sm-10">
                 {{$row->nama}} <br>

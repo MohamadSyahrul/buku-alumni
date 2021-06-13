@@ -27,6 +27,7 @@ class CreateProfilMahasiswasTable extends Migration
             $table->string('tahun_lulus');
             $table->string('angkatan');
             $table->integer('user_id');
+            $table->string('foto');
             $table->integer('hapus')->default(0);
            $table->timestamps();
         });

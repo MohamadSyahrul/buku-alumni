@@ -1,8 +1,8 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="../html/ltr/vertical-menu-template/index.html"><span class="brand-logo">
-                <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('dashboard')}}l"><span class="brand-logo">
+                <!-- <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                     <defs>
                         <linearGradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                             <stop stop-color="#000000" offset="0%"></stop>
@@ -24,8 +24,12 @@
                             </g>
                         </g>
                     </g>
-                </svg></span>
-                <h2 class="brand-text">Buku Alumni</h2>
+                </svg> -->
+                <img src="{{ asset('Poliwangi Logo.png')}}" style=";max-height: 40px;max-width: 40px;">
+                    <!--  <div class="col-lg-9 d-none d-lg-block " style="background-image: url('{{ asset('Poliwangi Logo.png')}} '); background-size: cover;background-position: center;max-height: 150px;max-width: 150px;margin-left:5em;margin-top: 10em;margin-right: 5em"></div -->>
+                </span>
+                <h2 class="brand-text" style="margin-top: -0.5em">Buku Alumni</h2><br />
+                <!-- <p style="text-transform: uppercase;" class="brand-text">{{Auth::user()->role_id}}</p> -->
             </a></li>
 
         </ul>
@@ -37,7 +41,7 @@
             <!--  -->
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data diri</span></a>
             </li>
@@ -65,9 +69,9 @@
             <!--  -->
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href=""><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data diri</span></a>
+            <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data diri</span></a> -->
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">Alumni</span></a>
             </li>

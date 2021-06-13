@@ -16,16 +16,32 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        if (Auth::user()->role_id=="akademik") {
+           $Pm =  ProfilMahasiswa::where('user_id', Auth::user()->id)->get();
+
+            $album = AlbumAlumni::all();
+            // dd($Pm);
+
+            return view('pages.mahasiswa.profile', [
+            "prodi"=> ProdiAlumni::all(),
+            "mahasiswa" => $Pm,
+            "album" => $album
+]);
+        }
+        else{
         $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
             $q->where('role_id', 'mahasiswa');
-        }])->get();
+        }])->where('user_id', Auth::user()->id)->get();
+
             $album = AlbumAlumni::all();
             return view('pages.mahasiswa.profile', [
             "prodi"=> ProdiAlumni::all(),
             "mahasiswa" => $Pm,
             "album" => $album
 ]);
+        }
+       
     }
 
     /**
@@ -46,6 +62,12 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+
+        $file = $request->file('foto');
+        $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
+        $file_formatted = str_replace(' ', '_', $filename);
+        $file->move('Foto-Mahasiswa/', $file_formatted);
+
        ProfilMahasiswa::create([
         'nim' => $request->input('nim'),
         'nama' => $request->input('nama'),
@@ -58,6 +80,8 @@ class ProfileController extends Controller
         'judul_laporan' => $request->input('judul_laporan'),    
         'tahun_lulus' => $request->input('tahun_lulus'),    
         'angkatan' => $request->input('angkatan'),
+        'telepon' => $request->input('telepon'),
+        'foto' => $file_formatted,
         'user_id' => Auth::user()->id,
     ]);
 
@@ -101,7 +125,35 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file = $request->file('foto');
+        $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
+        $file_formatted = str_replace(' ', '_', $filename);
+        $file->move('Foto-Mahasiswa/', $file_formatted);
+
+       ProfilMahasiswa::where('id', $id)->update([
+        'nim' => $request->input('nim'),
+        'nama' => $request->input('nama'),
+        'tempat_lahir' => $request->input('tempat_lahir'),
+        'tanggal_lahir' => $request->input('tanggal_lahir'),
+        'jenis_kelamin' => $request->input('jenis_kelamin'),
+        'prodi' => $request->input('prodi'),
+        'alamat' => $request->input('alamat'),    
+        'lama_studi' => $request->input('lama_studi'),    
+        'judul_laporan' => $request->input('judul_laporan'),    
+        'tahun_lulus' => $request->input('tahun_lulus'),    
+        'angkatan' => $request->input('angkatan'),
+        'telepon' => $request->input('telepon'),
+        'foto' => $file_formatted,
+        'user_id' => Auth::user()->id,
+         ]);
+
+
+ //    MasterKejadianJurnal::create(
+ //     $data
+
+ // );
+
+    return redirect('profile');
     }
 
     /**
