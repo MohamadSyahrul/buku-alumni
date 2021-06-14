@@ -16,7 +16,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-                 @if(count(array($prodi)) <1)
+                @if($prodi->count() < 1)
            
               <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
               <p style="font-size: 30px"> BELUM ADA Prodi</p>

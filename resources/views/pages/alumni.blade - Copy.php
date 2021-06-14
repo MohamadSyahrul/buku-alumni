@@ -5,15 +5,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 @section('content')
 <x-app-layout>
   <x-slot name="header">
-                @if($mahasiswa->count() < 1)
-     
-              <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
-              <p style="font-size: 30px"> BELUM ADA ALUMNI</p>
-              </div> 
-
-            
-           @else
-          <?php
+<?php
 //Columns must be a factor of 12 (1,2,3,4,6,12)
 $numOfCols = 2;
 $rowCount = 0;
@@ -36,8 +28,7 @@ foreach ($mahasiswa as $row){
 <?php
     if($rowCount % $numOfCols == 0) { ?> </div> <?php } } ?>
 
-  @endif
-
+  
 </x-slot>
 </x-app-layout>
 

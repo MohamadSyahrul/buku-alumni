@@ -17,7 +17,7 @@ class CreateProdiAlumnisTable extends Migration
             $table->id();
             $table->string('nama_prodi');
             $table->string('grade');
-            $table->integer('hapus');
+            $table->integer('hapus')->default(0);
             $table->timestamps();
         });
     }

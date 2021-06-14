@@ -38,7 +38,7 @@ Route::resource('user-mahasiswa', AddUserMahasiswaController::class)->only([
 ])->middleware(['auth']);
 //Mahasiswa
 Route::resource('album-alumni', AlbumAlumniController::class)->only([
-    'index', 'edit', 'store', 'update' , 'destroy'
+    'index', 
 ])->middleware(['auth']);
 Route::resource('profile', ProfileController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy'

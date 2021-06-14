@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role_id');
             // $table->rememberToken();
+            $table->integer('hapus')->default(0);
             $table->timestamps();
         });
     }

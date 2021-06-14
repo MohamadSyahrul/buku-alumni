@@ -16,7 +16,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-                 @if(count(array($album)) <1)
+                 @if($album->count() < 1)
            
               <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
               <p style="font-size: 30px"> BELUM ADA ALBUM</p>
@@ -86,7 +86,6 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title capitalize" id="exampleModalLabel">sinkronkan siswa ke dalam kelas</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

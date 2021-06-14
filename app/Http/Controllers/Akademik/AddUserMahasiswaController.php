@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Akademik;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProfilMahasiswa;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AddUserMahasiswaController extends Controller
 {
@@ -13,11 +15,9 @@ class AddUserMahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
-            $q->where('role_id', 'mahasiswa');
-        }])->get();
+       $Pm = User::where('role_id','mahasiswa')->where('hapus',0)->get();
          return view('pages.akademik.user_mahasiswa', [
             // "prodi"=> ProdiAlumni::all(),
             "mahasiswa" => $Pm,
@@ -43,7 +43,17 @@ class AddUserMahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $data = $request->all();
+
+       
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role_id' => 'mahasiswa'
+        ]);   
+
+        return redirect('user-mahasiswa');
     }
 
     /**
@@ -65,7 +75,9 @@ class AddUserMahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+          return view('pages.akademik.edit_user_mahasiswa', [
+        "mahasiswa" => User::where('id',$id)->first()
+    ]);
     }
 
     /**
@@ -77,7 +89,17 @@ class AddUserMahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+       
+        $user = User::where('id',$id)->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            // 'role_id' => 'mahasiswa'
+        ]);   
+
+        return redirect('user-mahasiswa');
     }
 
     /**
@@ -88,6 +110,9 @@ class AddUserMahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+           User::where('id', $id)->update([
+            'hapus' => 1,
+        ]);
+          return redirect('prodi');
     }
 }

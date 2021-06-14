@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2021 at 05:02 PM
+-- Generation Time: Jun 14, 2021 at 06:49 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -43,7 +43,7 @@ CREATE TABLE `album_alumnis` (
 
 INSERT INTO `album_alumnis` (`id`, `nama_album`, `angkatan`, `gambar_album`, `hapus`, `created_at`, `updated_at`) VALUES
 (1, 'Wisuda Horeee AK', '12', '1623321886.time.png', 0, '2021-06-10 03:41:59', '2021-06-10 03:44:46'),
-(2, 'Wisuda Horeee', '13', '1623321923.11-27-27-93df438d57e653b938574b0b1427182d_telephone-clipart-person-telephone-person-transparent-free-for-_600-600.png', 1, '2021-06-10 03:45:23', '2021-06-10 04:08:33');
+(2, 'Wisuda Horeee', '13', '1623321923.11-27-27-93df438d57e653b938574b0b1427182d_telephone-clipart-person-telephone-person-transparent-free-for-_600-600.png', 0, '2021-06-10 03:45:23', '2021-06-10 04:08:33');
 
 -- --------------------------------------------------------
 
@@ -81,9 +81,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2014_10_12_000000_create_users_table', 1),
 (13, '2014_10_12_100000_create_password_resets_table', 1),
 (14, '2019_08_19_000000_create_failed_jobs_table', 1),
-(15, '2021_06_09_072154_create_prodi_alumnis_table', 1),
 (23, '2021_06_09_083727_create_profil_mahasiswas_table', 7),
-(24, '2021_06_09_113853_create_album_alumnis_table', 8);
+(24, '2021_06_09_113853_create_album_alumnis_table', 8),
+(25, '2021_06_09_072154_create_prodi_alumnis_table', 9);
 
 -- --------------------------------------------------------
 
@@ -107,6 +107,7 @@ CREATE TABLE `prodi_alumnis` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `nama_prodi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `grade` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hapus` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -115,14 +116,15 @@ CREATE TABLE `prodi_alumnis` (
 -- Dumping data for table `prodi_alumnis`
 --
 
-INSERT INTO `prodi_alumnis` (`id`, `nama_prodi`, `grade`, `created_at`, `updated_at`) VALUES
-(1, 'Teknik Informatika', '', NULL, NULL),
-(2, 'Taknik Mesin', '', NULL, NULL),
-(3, 'Teknik Sipil', '', NULL, NULL),
-(4, 'Manajemen Bisnis Pariwisata', '', NULL, NULL),
-(5, 'Teknik Pengolahan Hasil Ternak', '', NULL, NULL),
-(6, 'Agribisnis', '', NULL, NULL),
-(7, 'Teknik Manufaktur Kapal', '', NULL, NULL);
+INSERT INTO `prodi_alumnis` (`id`, `nama_prodi`, `grade`, `hapus`, `created_at`, `updated_at`) VALUES
+(1, 'Teknik Informatika', '', 0, NULL, NULL),
+(2, 'Taknik Mesin', '', 0, NULL, NULL),
+(3, 'Teknik Sipil', '', 0, NULL, NULL),
+(4, 'Manajemen Bisnis Pariwisata', '', 0, NULL, NULL),
+(5, 'Teknik Pengolahan Hasil Ternak', '', 0, NULL, NULL),
+(6, 'Agribisnis', '', 0, NULL, NULL),
+(7, 'Teknik Manufaktur Kapal', '', 0, NULL, NULL),
+(8, 'Manajemen Bisnis Digital', 'B', 1, '2021-06-14 04:46:29', '2021-06-14 04:47:26');
 
 -- --------------------------------------------------------
 
@@ -144,6 +146,7 @@ CREATE TABLE `profil_mahasiswas` (
   `tahun_lulus` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `angkatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `telepon` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ipk` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `foto` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `hapus` int(11) NOT NULL DEFAULT 0,
@@ -155,9 +158,10 @@ CREATE TABLE `profil_mahasiswas` (
 -- Dumping data for table `profil_mahasiswas`
 --
 
-INSERT INTO `profil_mahasiswas` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `prodi`, `alamat`, `lama_studi`, `judul_laporan`, `tahun_lulus`, `angkatan`, `telepon`, `foto`, `user_id`, `hapus`, `created_at`, `updated_at`) VALUES
-(1, '361855401098', 'DELLA ', 'Banyuwangi', '2021-06-12', 'perempuan', 'Teknik Informatika', 'Banyuwangi', '5 Tahun 6 bulan', 'Aplikasi Buku Alumni Berbasis Web dengan Framework Laravel', '2021', '13', '08236823919', '361855401098-DELLA_PRISKILA-favicon.ico', 2, 0, '2021-06-13 06:43:10', '2021-06-13 06:43:10'),
-(2, '361855401099', 'PRISKILA', 'Banyuwangi', '2021-06-14', 'laki-laki', 'Teknik Informatika', 'Banyuwangi', '4 Tahun 2 bulan', 'Aplikasi Buku Alumni Berbasis Android', '2021', '13', '08222212121212', NULL, 3, 0, '2021-06-13 07:22:38', '2021-06-13 07:22:38');
+INSERT INTO `profil_mahasiswas` (`id`, `nim`, `nama`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `prodi`, `alamat`, `lama_studi`, `judul_laporan`, `tahun_lulus`, `angkatan`, `telepon`, `ipk`, `foto`, `user_id`, `hapus`, `created_at`, `updated_at`) VALUES
+(1, '361855401098', 'DELLA', 'Banyuwangi', '2021-06-12', 'perempuan', 'Teknik Informatika', 'Banyuwangi', '5 Tahun 6 bulan', 'Aplikasi Buku Alumni Berbasis Web dengan Framework Laravel', '2021', '13', '08236823919', NULL, '361855401098-DELLA_PRISKILA-favicon.ico', 2, 0, '2021-06-13 06:43:10', '2021-06-13 06:43:10'),
+(2, '361855401099', 'DELLA PRISKILA', 'Banyuwangi', '2021-06-14', 'laki-laki', 'Teknik Informatika', 'Banyuwangi', '4 Tahun 2 bulan', 'Aplikasi Buku Alumni Berbasis Android', '2021', '13', '08222212121212', NULL, NULL, 3, 0, '2021-06-13 07:22:38', '2021-06-13 07:22:38'),
+(3, '36115580', 'PRISKILA DELLA', 'Banyuwangi', '2021-06-14', 'laki-laki', 'Teknik Informatika', 'Banyuwangi', '5 Tahun 6 bulan', 'Aplikasi Buku Alumni Berbasis Web dengan Framework Laravel', '2020', '13', '082121212121', '4,00', '36115580-PRISKILA_DELLA-IMG_20180711_173332.jpg', 4, 0, '2021-06-14 07:30:48', '2021-06-14 08:40:02');
 
 -- --------------------------------------------------------
 
@@ -171,6 +175,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hapus` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -179,11 +184,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `created_at`, `updated_at`) VALUES
-(1, 'Priskila', 'priskiladella@gmail.com', '$2y$10$aBNK00zGuhceJC106rLrROYv2ucTJpurZLn2JRLJ.5gMnD.Db.msS', 'akademik', NULL, NULL),
-(2, 'DELLA', 'dellapriskila@gmail.com', '$2y$10$fPGY0N.lGK9Di4dETk19IOUi7qlgn0jktTV2TKhLJGME1af37EjQm', 'mahasiswa', NULL, NULL),
-(3, 'DELLA PRISKILA', 'dellapriskila2@gmail.com', '$2y$10$td.v6Uo54FaM9Ck8XALaeeizM862xJDtxAO9OAOJJIXDt3RBou/RK', 'mahasiswa', NULL, NULL),
-(4, 'PRISKILA DELLA', 'dellapriskila3@gmail.com', '$2y$10$roFhdy1XUjAttiMNgTAdXeskGyF6j.NkNcxwBDlTmxi97ugfGF2vS', 'mahasiswa', NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`, `hapus`, `created_at`, `updated_at`) VALUES
+(1, 'Priskila', 'priskiladella@gmail.com', '$2y$10$aBNK00zGuhceJC106rLrROYv2ucTJpurZLn2JRLJ.5gMnD.Db.msS', 'akademik', 0, NULL, NULL),
+(2, 'DELLA', 'dellapriskila@gmail.com', '$2y$10$fPGY0N.lGK9Di4dETk19IOUi7qlgn0jktTV2TKhLJGME1af37EjQm', 'mahasiswa', 0, NULL, NULL),
+(3, 'DELLA PRISKILA', 'dellapriskila2@gmail.com', '$2y$10$td.v6Uo54FaM9Ck8XALaeeizM862xJDtxAO9OAOJJIXDt3RBou/RK', 'mahasiswa', 0, NULL, NULL),
+(4, 'PRISKILA DELLA', 'dellapriskila3@gmail.com', '$2y$10$roFhdy1XUjAttiMNgTAdXeskGyF6j.NkNcxwBDlTmxi97ugfGF2vS', 'mahasiswa', 0, NULL, NULL),
+(5, 'Della Pris', 'dellapriskila4@gmail.com', '$2y$10$9t/LVJgLVQo1ZAJq8347OuIgW6Gbig1OJNpoiBo1ymrGMNDfg1j0C', 'mahasiswa', 0, '2021-06-14 07:03:24', '2021-06-14 07:13:35');
 
 --
 -- Indexes for dumped tables
@@ -253,25 +259,25 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `prodi_alumnis`
 --
 ALTER TABLE `prodi_alumnis`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `profil_mahasiswas`
 --
 ALTER TABLE `profil_mahasiswas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
