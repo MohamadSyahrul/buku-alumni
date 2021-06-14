@@ -19,32 +19,24 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         </button>
       </div>
 
-      <form action="{{ route('album-akademik.update' , $album->id)}}" enctype="multipart/form-data" method="POST">
+      <form action="{{ route('prodi.update' , $prodi->id)}}" enctype="multipart/form-data" method="POST">
         @csrf
         @method('PATCH')
         <div class="modal-body">
           <div class="form-group row">
            <div class="col-lg-3">
-             <label class="col-form-label">Nama Album</label>
+             <label class="col-form-label">Nama Prodi</label>
            </div>
            <div class="col-lg-8">
-             <input type="text" value="{{$album->nama_album}}" class="form-control" name="nama_album">
+             <input type="text" value="{{$prodi->nama_prodi}}" class="form-control" name="nama_prodi">
            </div>
          </div>
          <div class="form-group row">
            <div class="col-lg-3">
-             <label class="col-form-label">Angkatan</label>
+             <label class="col-form-label">Grade</label>
            </div>
            <div class="col-lg-8">
-             <input type="text" value="{{$album->angkatan}}" class="form-control" name="angkatan">
-           </div>
-         </div>
-         <div class="form-group row">
-           <div class="col-lg-3">
-             <label class="col-form-label">Gambar Album</label>
-           </div>
-           <div class="col-lg-8">
-             <input type="file" class="form-control" name="gambar_album">
+             <input type="text" value="{{$prodi->grade}}" class="form-control" name="grade">
            </div>
          </div>
   <div class="modal-footer">

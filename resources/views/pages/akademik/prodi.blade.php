@@ -8,7 +8,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 
 
     <div class="dropdown mb-2" style="background-color: #fff">
-      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#TambahData">Tambah Album Wisuda</button>
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#TambahData">Tambah Prodi</button>
 
     </div>
     <div class="container">
@@ -16,10 +16,10 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-                 @if(count(array($album)) <1)
+                 @if(count(array($prodi)) <1)
            
               <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
-              <p style="font-size: 30px"> BELUM ADA ALBUM</p>
+              <p style="font-size: 30px"> BELUM ADA Prodi</p>
               </div> 
            @else
            <div class="table-responsive">
@@ -27,40 +27,28 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
             <thead>
               <tr>
                  <th>No</th>
-                  <th>Gambar</th>
-                  <th>Nama Album</th>
-                  <th>Angkatan</th>
-                  <th>Detail Album</th>
+                  <th>Nama Prodi</th>
+                  <th>Grade</th>
                   <th>Action</th>
-
               </tr>
             </thead>
             <tbody>
-             @foreach($album as $key=> $album)
+             @foreach($prodi as $key => $prodi)
                 <tr>
 
                     <td>{{$key+1}}</td>
-                    <td><img src="{{ asset('/Akademik-Album/'.$album->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td>
-                    <td>{{$album->nama_album}}</td>
-                    <td>{{$album->angkatan}}</td>
-                    <td> <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
-                          <a href="{{ url('detail-album-alumni',$album->angkatan) }}">
-                          <i class="fas fa-link">                            
-                            Detail Album
-                          </i>
-                          </a>
-                        </button>
-                    </td>
-                    <td class="flex"  style="margin-top: 1em;">
+                    <td>{{$prodi->nama_prodi}}</td>
+                    <td>{{$prodi->grade}}</td>
+                    <td class="flex" >
                         <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
-                          <a href="{{ route('album-akademik.edit',$album->id) }}">
+                          <a href="{{ route('prodi.edit',$prodi->id) }}">
                           <i class="fas fa-edit">                            
                             Edit
                           </i>
                           </a>
                         </button>
                 
-                      <form method="POST" action="{{ route('album-akademik.destroy', $album->id)}}"  onclick="deleteData('{{$album->id}}', this)" >
+                      <form method="POST" action="{{ route('prodi.destroy', $prodi->id)}}"  onclick="deleteData('{{$prodi->id}}', this)" >
                         @csrf
                         @method('DELETE')
                         <button type="submit"  class="text-red-500 hover:text-red-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300">
@@ -92,32 +80,24 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         </button>
       </div>
 
-      <form action="{{ url('album-akademik')}}" enctype="multipart/form-data" method="post">
+      <form action="{{ url('prodi')}}" enctype="multipart/form-data" method="post">
         @csrf
         
         <div class="modal-body">
           <div class="form-group row">
            <div class="col-lg-3">
-             <label class="col-form-label">Nama Album</label>
+             <label class="col-form-label">Nama Prodi</label>
            </div>
            <div class="col-lg-8">
-             <input type="text" class="form-control" name="nama_album">
+             <input type="text" class="form-control" name="nama_prodi">
            </div>
          </div>
          <div class="form-group row">
            <div class="col-lg-3">
-             <label class="col-form-label">Angkatan</label>
+             <label class="col-form-label">Grade</label>
            </div>
            <div class="col-lg-8">
-             <input type="text" class="form-control" name="angkatan">
-           </div>
-         </div>
-         <div class="form-group row">
-           <div class="col-lg-3">
-             <label class="col-form-label">Gambar Album</label>
-           </div>
-           <div class="col-lg-8">
-             <input type="file" class="form-control" name="gambar_album">
+             <input type="text" class="form-control" name="grade">
            </div>
          </div>
   <div class="modal-footer">

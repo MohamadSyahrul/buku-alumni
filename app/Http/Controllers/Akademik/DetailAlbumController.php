@@ -4,19 +4,25 @@ namespace App\Http\Controllers\Akademik;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AlbumAlumni;
+use App\Models\ProfilMahasiswa;
 
-class AlbumController extends Controller
+class DetailAlbumController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $id)
     {
-       return view('pages.akademik.album', [
-        "album" => AlbumAlumni::where('hapus', 0)->get()
+       $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
+        $q->where('role_id', 'mahasiswa');
+    }])->where('angkatan', $id)->get();
+       // dd($Pm);
+       return view('pages.akademik.detail_album', [
+            // "prodi"=> ProdiAlumni::all(),
+        "mahasiswa" => $Pm,
+            // "album" => $album
     ]);
    }
 
@@ -38,18 +44,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('gambar_album');
-        $filename = time().'.'.$file->getClientOriginalName();
-        $file_formatted = str_replace(' ', '_', $filename);
-        $file->move('Akademik-Album/', $file_formatted);
-
-        AlbumAlumni::create([
-            'nama_album' => $request->input('nama_album'),
-            'angkatan' => $request->input('angkatan'),
-            'gambar_album' => $file_formatted,
-        ]);
-        return redirect('album-akademik');
-
+        //
     }
 
     /**
@@ -71,10 +66,8 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-       return view('pages.akademik.edit_album', [
-        "album" => AlbumAlumni::where('id',$id)->first()
-    ]);
-   }
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -85,18 +78,8 @@ class AlbumController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $file = $request->file('gambar_album');
-      $filename = time().'.'.$file->getClientOriginalName();
-      $file_formatted = str_replace(' ', '_', $filename);
-      $file->move('Akademik-Album/', $file_formatted);
-
-      AlbumAlumni::where('id', $id)->update([
-        'nama_album' => $request->input('nama_album'),
-        'angkatan' => $request->input('angkatan'),
-        'gambar_album' => $file_formatted,
-    ]);
-      return redirect('album-akademik');
-  }
+        //
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -106,9 +89,6 @@ class AlbumController extends Controller
      */
     public function destroy($id)
     {
-        AlbumAlumni::where('id', $id)->update([
-            'hapus' => 1,
-        ]);
-          return redirect('album-akademik');
+        //
     }
 }

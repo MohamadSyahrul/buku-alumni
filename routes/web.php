@@ -6,6 +6,9 @@ use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\AlbumAlumniController;
 //Akademik
 use App\Http\Controllers\Akademik\AlbumController;
+use App\Http\Controllers\Akademik\DetailAlbumController;
+use App\Http\Controllers\Akademik\AddProdiController;
+use App\Http\Controllers\Akademik\AddUserMahasiswaController;
 //All
 use App\Http\Controllers\AlumniController;
 
@@ -22,9 +25,17 @@ use App\Http\Controllers\AlumniController;
 
 //Akademik
 Route::resource('album-akademik', AlbumController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy', 
+])->middleware(['auth']);
+Route::resource('detail-album-alumni/{id}', DetailAlbumController::class)->only([
+    'index'
+])->middleware(['auth']);
+Route::resource('prodi', AddProdiController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy'
 ])->middleware(['auth']);
-
+Route::resource('user-mahasiswa', AddUserMahasiswaController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy'
+])->middleware(['auth']);
 //Mahasiswa
 Route::resource('album-alumni', AlbumAlumniController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy'
