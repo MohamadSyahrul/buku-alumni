@@ -1,14 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//Mahasiswa
-use App\Http\Controllers\Mahasiswa\ProfileController;
-use App\Http\Controllers\Mahasiswa\AlbumAlumniController;
 //Akademik
 use App\Http\Controllers\Akademik\AlbumController;
 use App\Http\Controllers\Akademik\DetailAlbumController;
 use App\Http\Controllers\Akademik\AddProdiController;
 use App\Http\Controllers\Akademik\AddUserMahasiswaController;
+use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ExportPDFController;
+//Mahasiswa
+use App\Http\Controllers\Mahasiswa\ProfileController;
+use App\Http\Controllers\Mahasiswa\AlbumAlumniController;
 //All
 use App\Http\Controllers\AlumniController;
 
@@ -35,6 +37,12 @@ Route::resource('prodi', AddProdiController::class)->only([
 ])->middleware(['auth']);
 Route::resource('user-mahasiswa', AddUserMahasiswaController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy'
+])->middleware(['auth']);
+Route::resource('import-mahasiswa-excel', ImportController::class)->only([
+    'store'
+])->middleware(['auth']);
+Route::resource('download-album/{id}', ExportPDFController::class)->only([
+    'index'
 ])->middleware(['auth']);
 //Mahasiswa
 Route::resource('album-alumni', AlbumAlumniController::class)->only([

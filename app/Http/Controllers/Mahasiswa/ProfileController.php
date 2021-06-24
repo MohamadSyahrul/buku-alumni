@@ -69,6 +69,7 @@ class ProfileController extends Controller
         $file = $request->file('foto');
         $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
+        $file->resize(320, 240);
         $file->move('Foto-Mahasiswa/', $file_formatted);
 
        ProfilMahasiswa::create([

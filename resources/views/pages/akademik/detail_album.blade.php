@@ -19,9 +19,12 @@ $numOfCols = 2;
 $rowCount = 0;
 $bootstrapColWidth = 12 / $numOfCols;
 foreach ($mahasiswa as $row){
+
   if($rowCount % $numOfCols == 0) { ?> <div class="row"> <?php } 
     $rowCount++; ?>  
+ 
         <div class="col-md-<?php echo $bootstrapColWidth; ?>">
+          
             <div class="form-group row">
               <div class="col-sm-2 mb-3 mb-sm-0">
                  <img src="{{ asset('Foto-Mahasiswa/'.$row->foto) }}">

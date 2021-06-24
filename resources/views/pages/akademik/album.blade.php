@@ -31,6 +31,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                   <th>Nama Album</th>
                   <th>Angkatan</th>
                   <th>Detail Album</th>
+                  <th>Download Album</th>
                   <th>Action</th>
 
               </tr>
@@ -51,6 +52,15 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                           </a>
                         </button>
                     </td>
+                     <td>
+            <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                          <a href="{{ url('download-album',$album->angkatan) }}">
+                          <i class="fas fa-link">                            
+                            Download Album
+                          </i>
+                          </a>
+                        </button>
+          </td>
                     <td class="flex"  style="margin-top: 1em;">
                         <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
                           <a href="{{ route('album-akademik.edit',$album->id) }}">

@@ -3,13 +3,52 @@
 Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 @endsection
 @section('content')
+
+
+<style type="text/css">
+  .upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn-upload {
+  border: 1px solid #7367F0;
+  color: #7367F0;
+  background-color: transparent;
+  /*padding: 8px 12px;*/
+  padding: 0.786rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  /*font-weight: bold;*/
+  font-weight: 500;
+
+}
+
+.upload-btn-wrapper input[type=file] {
+  /*font-size: 100px;*/
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+</style>
 <x-app-layout>
   <x-slot name="header">
 
 
     <div class="dropdown mb-2" style="background-color: #fff">
-      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#TambahData">Tambah User</button>
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#TambahData" style="border-radius: 8px">Tambah User</button>
+<form method="post" action="{{url('import-mahasiswa-excel')}}" enctype="multipart/form-data">
+              @csrf
 
+              <div class="upload-btn-wrapper">
+  <button class="btn-upload btn-outline-primary" >Upload CSV file</button>
+  <input type="file" name="file" />
+</div>
+              
+
+            </form>
     </div>
     <div class="container">
       <div class="card o-hidden border-0 shadow-lg my-5">
@@ -19,7 +58,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                  @if(count(array($mahasiswa)) <1)
            
               <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
-              <p style="font-size: 30px"> BELUM ADA ALBUM</p>
+              <p style="font-size: 30px"> BELUM ADA DATA</p>
               </div> 
            @else
            <div class="table-responsive">
