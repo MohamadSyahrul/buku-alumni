@@ -16,6 +16,8 @@ class CreateProdiAlumnisTable extends Migration
         Schema::create('prodi_alumnis', function (Blueprint $table) {
             $table->id();
             $table->string('nama_prodi');
+            $table->string('grade');
+            $table->integer('hapus')->default(0);
             $table->timestamps();
         });
     }

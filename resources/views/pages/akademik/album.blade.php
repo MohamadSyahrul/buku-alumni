@@ -16,7 +16,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->
           <div class="row">
-                 @if(count($album) <1)
+                 @if($album->count() < 1)
            
               <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
               <p style="font-size: 30px"> BELUM ADA ALBUM</p>
@@ -30,6 +30,8 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                   <th>Gambar</th>
                   <th>Nama Album</th>
                   <th>Angkatan</th>
+                  <th>Detail Album</th>
+                  <th>Download Album</th>
                   <th>Action</th>
 
               </tr>
@@ -42,6 +44,23 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                     <td><img src="{{ asset('/Akademik-Album/'.$album->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td>
                     <td>{{$album->nama_album}}</td>
                     <td>{{$album->angkatan}}</td>
+                    <td> <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                          <a href="{{ url('detail-album-alumni',$album->angkatan) }}">
+                          <i class="fas fa-link">                            
+                            Detail Album
+                          </i>
+                          </a>
+                        </button>
+                    </td>
+                     <td>
+            <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                          <a href="{{ url('download-album',$album->angkatan) }}">
+                          <i class="fas fa-link">                            
+                            Download Album
+                          </i>
+                          </a>
+                        </button>
+          </td>
                     <td class="flex"  style="margin-top: 1em;">
                         <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
                           <a href="{{ route('album-akademik.edit',$album->id) }}">
@@ -77,7 +96,6 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title capitalize" id="exampleModalLabel">sinkronkan siswa ke dalam kelas</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

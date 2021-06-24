@@ -71,11 +71,11 @@
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
             </li>
-            <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data diri</span></a> -->
-            </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">Alumni</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('prodi')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Prodi</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-akademik')}}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="Calendar">Album</span></a>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('user-mahasiswa')}}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">Alumni</span></a>
             </li>
 
             <div class="mt-3 space-y-1">

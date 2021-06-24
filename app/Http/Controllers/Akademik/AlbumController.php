@@ -16,7 +16,7 @@ class AlbumController extends Controller
     public function index()
     {
        return view('pages.akademik.album', [
-        "album" => AlbumAlumni::all()
+        "album" => AlbumAlumni::where('hapus', 0)->get()
     ]);
    }
 

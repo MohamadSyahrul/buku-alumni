@@ -9,6 +9,10 @@ class ProdiAlumni extends Model
 {
     use HasFactory;
      protected $fillable = [
-        'prodi_alumnis'
+        'id',
+        'nama_prodi',
+        'grade',
+        'hapus',
+
     ];
 }

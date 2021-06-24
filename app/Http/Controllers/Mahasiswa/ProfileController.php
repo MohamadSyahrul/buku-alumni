@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProdiAlumni;
 use App\Models\ProfilMahasiswa;
 use App\Models\AlbumAlumni;
+use App\Models\User;
 use Auth;
 class ProfileController extends Controller
 {
@@ -17,30 +18,32 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {   
-        if (Auth::user()->role_id=="akademik") {
-           $Pm =  ProfilMahasiswa::where('user_id', Auth::user()->id)->get();
+//         if (Auth::user()->role_id=="akademik") {
+//            $Pm =  ProfilMahasiswa::where('user_id', Auth::user()->id)->get();
 
-            $album = AlbumAlumni::all();
-            // dd($Pm);
+//             $album = AlbumAlumni::all();
+//             // dd($Pm);
 
-            return view('pages.mahasiswa.profile', [
-            "prodi"=> ProdiAlumni::all(),
-            "mahasiswa" => $Pm,
-            "album" => $album
-]);
-        }
-        else{
+//             return view('pages.mahasiswa.profile', [
+//             "prodi"=> ProdiAlumni::all(),
+//             "mahasiswa" => $Pm,
+//             "album" => $album
+// ]);
+//         }
+//         else{
         $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
             $q->where('role_id', 'mahasiswa');
         }])->where('user_id', Auth::user()->id)->get();
-
+        $data_user = User::where('id',Auth::user()->id)->first();
+        // dd($Pm);
             $album = AlbumAlumni::all();
             return view('pages.mahasiswa.profile', [
             "prodi"=> ProdiAlumni::all(),
             "mahasiswa" => $Pm,
-            "album" => $album
+            "album" => $album,
+            "data_user" => $data_user
 ]);
-        }
+        // }
        
     }
 
@@ -66,6 +69,7 @@ class ProfileController extends Controller
         $file = $request->file('foto');
         $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
+        $file->resize(320, 240);
         $file->move('Foto-Mahasiswa/', $file_formatted);
 
        ProfilMahasiswa::create([
@@ -81,6 +85,7 @@ class ProfileController extends Controller
         'tahun_lulus' => $request->input('tahun_lulus'),    
         'angkatan' => $request->input('angkatan'),
         'telepon' => $request->input('telepon'),
+        'ipk' => $request->input('ipk'),
         'foto' => $file_formatted,
         'user_id' => Auth::user()->id,
     ]);
@@ -143,6 +148,7 @@ class ProfileController extends Controller
         'tahun_lulus' => $request->input('tahun_lulus'),    
         'angkatan' => $request->input('angkatan'),
         'telepon' => $request->input('telepon'),
+        'ipk' => $request->input('ipk'),
         'foto' => $file_formatted,
         'user_id' => Auth::user()->id,
          ]);
