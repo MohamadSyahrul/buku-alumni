@@ -19,18 +19,23 @@ class ExportPDFController extends Controller
     }])->where('angkatan', $id)->get();
        // dd($Pm);
        
-
-      $pdf = PDF::loadView('pages.akademik.cetak_album', [
+ return PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled' => true,'isHtml5ParserEnabled' => true])->loadView('pages.akademik.cetak_album', [
             // "prodi"=> ProdiAlumni::all(),
         "mahasiswa" => $Pm,
             // "album" => $album
-    ])->setPaper('a4', 'potrait')->setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', 'images' => true]);
+    ])->stream();
+
+      // $pdf = PDF::loadView('pages.akademik.cetak_album', [
+            // "prodi"=> ProdiAlumni::all(),
+        // "mahasiswa" => $Pm,
+            // "album" => $album
+    // ])->setPaper('a4', 'potrait')->setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif'])->setBasePath();
     // 'isRemoteEnabled' => true]);
      // 'isHtml5ParserEnabled' => true]);
-// ini_set('max_execution_time', 300); //300 seconds = 5 minutes 
+ini_set('max_execution_time', 300); //300 seconds = 5 minutes 
 
 
-return $pdf->stream('Album Angkatan/'.$id.'.pdf');
+// return $pdf->stream('Album Angkatan/'.$id.'.pdf');
     }
 
     /**
