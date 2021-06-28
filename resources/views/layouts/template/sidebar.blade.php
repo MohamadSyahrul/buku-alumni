@@ -2,7 +2,7 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('dashboard')}}l"><span class="brand-logo">
-                <!-- <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
+                        <!-- <svg viewBox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                     <defs>
                         <linearGradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                             <stop stop-color="#000000" offset="0%"></stop>
@@ -25,12 +25,12 @@
                         </g>
                     </g>
                 </svg> -->
-                <img src="{{ asset('Poliwangi Logo.png')}}" style=";max-height: 40px;max-width: 40px;">
-                    <!--  <div class="col-lg-9 d-none d-lg-block " style="background-image: url('{{ asset('Poliwangi Logo.png')}} '); background-size: cover;background-position: center;max-height: 150px;max-width: 150px;margin-left:5em;margin-top: 10em;margin-right: 5em"></div -->>
-                </span>
-                <h2 class="brand-text" style="margin-top: -0.5em">Buku Alumni</h2><br />
-                <!-- <p style="text-transform: uppercase;" class="brand-text">{{Auth::user()->role_id}}</p> -->
-            </a></li>
+                        <img src="{{ asset('Poliwangi Logo.png')}}" style=";max-height: 40px;max-width: 40px;">
+                        <!--  <div class="col-lg-9 d-none d-lg-block " style="background-image: url('{{ asset('Poliwangi Logo.png')}} '); background-size: cover;background-position: center;max-height: 150px;max-width: 150px;margin-left:5em;margin-top: 10em;margin-right: 5em"></div -->
+                    </span>
+                    <h2 class="brand-text" style="margin-top: -0.5em">Buku Alumni</h2><br />
+                    <!-- <p style="text-transform: uppercase;" class="brand-text">{{Auth::user()->role_id}}</p> -->
+                </a></li>
 
         </ul>
     </div>
@@ -39,59 +39,74 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <!--  -->
-            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
+            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
+                    data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i
+                        data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data diri</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i
+                        data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data
+                        diri</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">Alumni</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i
+                        data-feather="users"></i><span class="menu-title text-truncate"
+                        data-i18n="Todo">Alumni</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-alumni')}}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="Calendar">Album</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-alumni')}}"><i
+                        data-feather="book"></i><span class="menu-title text-truncate"
+                        data-i18n="Calendar">Album</span></a>
             </li>
 
-            <div class="mt-3 space-y-1">
+            {{-- <div class="mt-3 space-y-1">
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
-                    onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                     this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-responsive-nav-link>
-            </form>
-        </div>
-        @else
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div> --}}
+            @else
             <div class="shadow-bottom"></div>
-    <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <!--  -->
-            <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
-            </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
-            </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('prodi')}}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Prodi</span></a>
-            </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-akademik')}}"><i data-feather="book"></i><span class="menu-title text-truncate" data-i18n="Calendar">Album</span></a>
-            </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('user-mahasiswa')}}"><i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">Alumni</span></a>
-            </li>
+            <div class="main-menu-content">
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <!--  -->
+                    <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
+                            data-feather="more-horizontal"></i>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i
+                                data-feather="home"></i><span class="menu-title text-truncate"
+                                data-i18n="Home">Home</span></a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('prodi')}}"><i
+                                data-feather="user"></i><span class="menu-title text-truncate"
+                                data-i18n="Profile">Prodi</span></a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-akademik')}}"><i
+                                data-feather="book"></i><span class="menu-title text-truncate"
+                                data-i18n="Calendar">Album</span></a>
+                    </li>
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('user-mahasiswa')}}"><i
+                                data-feather="users"></i><span class="menu-title text-truncate"
+                                data-i18n="Todo">Alumni</span></a>
+                    </li>
 
-            <div class="mt-3 space-y-1">
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+                    {{-- <div class="mt-3 space-y-1">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
-                    onclick="event.preventDefault();
+                            <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                     this.closest('form').submit();">
-                    {{ __('Log Out') }}
-                </x-responsive-nav-link>
-            </form>
-        </div>
-        @endif
-               <!--  <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    </div> --}}
+                    @endif
+                    <!--  <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="app-invoice-list.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">List</span></a>
                         </li>
@@ -103,8 +118,8 @@
                         </li>
                     </ul>
                 </li> -->
-            </ul>
-        </li>
-    </ul>
-</div>
+                </ul>
+                </li>
+        </ul>
+    </div>
 </div>
