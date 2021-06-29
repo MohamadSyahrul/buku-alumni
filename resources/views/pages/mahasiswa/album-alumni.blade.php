@@ -29,8 +29,9 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                  <th>No</th>
                   <th>Gambar</th>
                   <th>Nama Album</th>
-                  <th>Angkatan</th>
+                  <th>Tahun</th>
                   <th>Detail Album</th>
+                  <th>Download Album</th>
                   <!-- <th>Action</th> -->
 
               </tr>
@@ -42,7 +43,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                     <td>{{$key+1}}</td>
                     <td><img src="{{ asset('/Akademik-Album/'.$album->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td>
                     <td>{{$album->nama_album}}</td>
-                    <td>{{$album->angkatan}}</td>
+                    <td>{{$album->tahun_terbit}}</td>
                     <td> <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
                           <a href="{{ url('detail-album-alumni',$album->angkatan) }}">
                           <i class="fas fa-link">                            
@@ -70,6 +71,15 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </button>
                       </form>
                     </td> -->
+                     <td>
+            <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                          <a href="{{ url('download-album',$album->angkatan) }}">
+                          <i class="fas fa-link">                            
+                            Download Album
+                          </i>
+                          </a>
+                        </button>
+               </td>
                 </tr>
              @endforeach
              @endif

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\ValidasiStatusMahasiswa;
 
 class ProfilMahasiswa extends Model
 {
@@ -22,11 +23,12 @@ class ProfilMahasiswa extends Model
         'alamat',
         'lama_studi',
         'judul_laporan',
-        'tahun_lulus',
+        'sosmed',
         'angkatan',
         'telepon',
         'ipk',
         'foto',
+        'pekerjaan',
         'user_id',
         'created_at',
         'updated_at',

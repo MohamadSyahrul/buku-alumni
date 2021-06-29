@@ -8,6 +8,10 @@ use App\Http\Controllers\Akademik\AddProdiController;
 use App\Http\Controllers\Akademik\AddUserMahasiswaController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ExportPDFController;
+use App\Http\Controllers\DetailAlumniController;
+use App\Http\Controllers\EditProfileAlumni;
+
+
 //Mahasiswa
 use App\Http\Controllers\Mahasiswa\ProfileController;
 use App\Http\Controllers\Mahasiswa\AlbumAlumniController;
@@ -49,15 +53,21 @@ Route::resource('album-alumni', AlbumAlumniController::class)->only([
     'index', 
 ])->middleware(['auth']);
 Route::resource('profile', ProfileController::class)->only([
-    'index', 'edit', 'store', 'update' , 'destroy'
+    'index', 'edit', 'store', 'update' , 'destroy' ,'show'
 ])->middleware(['auth']);
-
+Route::resource('detail-alumni_mahasiswa', DetailAlumniController::class)->only([
+    'index', 'edit', 'store', 'update' , 'destroy', 'show'
+])->middleware(['auth']);
+// Route::get('edit-alumni_mahasiswa', EditProfileAlumni::class)->only([
+//     'index'
+// ])->middleware(['auth']);
+// Route::get('/edit-alumni_mahasiswa/{id}', 'EditProfileAlumni@index');
 //All
 Route::get('/', function () {
     return view('auth.login');
 });
 Route::resource('alumni', AlumniController::class)->only([
-    'index', 'edit', 'store', 'update' , 'destroy'
+    'index', 'edit', 'store', 'update' , 'destroy', 'show'
 ])->middleware(['auth']);
 Route::get('/dashboard', function () {
     return view('dashboard');

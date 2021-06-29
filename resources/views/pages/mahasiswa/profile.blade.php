@@ -116,10 +116,10 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Tahun Lulus </h6>
+                                        <h6>Sosmed </h6>
                                     </div>
                                     <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$mahasiswa->tahun_lulus}}</div>
+                                        <div class="sidebar-brand-text mx-3">: {{$mahasiswa->sosmed}}</div>
                                     </div>
                                 </div>
                                 @if($mahasiswa->ipk != '')
@@ -144,7 +144,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                 @endif
                                 <div class="form-group row">
                                     <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Wisuda</h6>
+                                        <h6>Angkatan</h6>
                                     </div>
                                     <div class="col-sm-10">
                                         <div class="sidebar-brand-text mx-3">
@@ -277,10 +277,19 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </div>
                         <div class="form-group row">
                             <div class="col-lg-3">
-                                <label class="col-form-label">Tahun Lulus</label>
+                                <label class="col-form-label">Sosmed</label>
                             </div>
                             <div class="col-lg-8">
-                                <input type="text" name="tahun_lulus" value="{{$mahasiswa->tahun_lulus}}"
+                                <input type="text" name="sosmed" value="{{$mahasiswa->sosmed}}"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label class="col-form-label">Pekerjaan</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" name="pekerjaan" value="{{$mahasiswa->pekerjaan}}"
                                     class="form-control">
                             </div>
                         </div>

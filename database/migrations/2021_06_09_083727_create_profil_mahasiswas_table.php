@@ -24,11 +24,13 @@ class CreateProfilMahasiswasTable extends Migration
             $table->string('alamat');
             $table->string('lama_studi');
             $table->string('judul_laporan');
-            $table->string('tahun_lulus');
+            $table->string('sosmed');
             $table->string('angkatan');
             $table->integer('user_id');
             $table->integer('ipk');
             $table->string('foto');
+            $table->string('pekerjaan');
+            $table->string('status');
             $table->integer('hapus')->default(0);
            $table->timestamps();
         });

@@ -9,6 +9,7 @@ use App\Models\ProfilMahasiswa;
 use App\Models\AlbumAlumni;
 use App\Models\User;
 use Auth;
+use Image;
 class ProfileController extends Controller
 {
     /**
@@ -69,8 +70,19 @@ class ProfileController extends Controller
         $file = $request->file('foto');
         $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
-        $file->resize(320, 240);
-        $file->move('Foto-Mahasiswa/', $file_formatted);
+        // $file->move('Foto-Mahasiswa/', $file_formatted);
+
+
+        $img = Image::make($request->file('foto')->getRealPath());
+        // $img = Image::make('Foto-Mahasiswa/', $file_formatted);
+
+        // resize image to fixed size
+        // See the docs - http://image.intervention.io/api/resize
+        $img->resize(300, 200);
+        $img->response('jpg');
+        // The below part is optional, this is if uploads "belongTo" a "User"
+        // so you automatically insert the relation, if you don't need it, just
+        // remove it.
 
        ProfilMahasiswa::create([
         'nim' => $request->input('nim'),
@@ -82,11 +94,12 @@ class ProfileController extends Controller
         'alamat' => $request->input('alamat'),    
         'lama_studi' => $request->input('lama_studi'),    
         'judul_laporan' => $request->input('judul_laporan'),    
-        'tahun_lulus' => $request->input('tahun_lulus'),    
+        'sosmed' => $request->input('sosmed'),        
         'angkatan' => $request->input('angkatan'),
         'telepon' => $request->input('telepon'),
         'ipk' => $request->input('ipk'),
         'foto' => $file_formatted,
+        'pekerjaan' => $request->input('pekerjaan'),
         'user_id' => Auth::user()->id,
     ]);
 
@@ -105,9 +118,20 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+         $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
+            $q->where('role_id', 'mahasiswa');
+        }])->where('user_id', Auth::user()->id)->get();
+        $data_user = User::where('id',Auth::user()->id)->first();
+        // dd($Pm);
+            $album = AlbumAlumni::all();
+            return view('pages.mahasiswa.profile', [
+            "prodi"=> ProdiAlumni::all(),
+            "mahasiswa" => $Pm,
+            "album" => $album,
+            "data_user" => $data_user
+]);
     }
 
     /**
@@ -133,7 +157,19 @@ class ProfileController extends Controller
         $file = $request->file('foto');
         $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
-        $file->move('Foto-Mahasiswa/', $file_formatted);
+        // $file->move('Foto-Mahasiswa/', $file_formatted);
+
+
+        $img = Image::make($request->file('foto')->getRealPath());
+        // $img = Image::make('Foto-Mahasiswa/', $file_formatted);
+
+        // resize image to fixed size
+        // See the docs - http://image.intervention.io/api/resize
+        $img->resize(300, 200);
+        $img->response('jpg');
+        // The below part is optional, this is if uploads "belongTo" a "User"
+        // so you automatically insert the relation, if you don't need it, just
+        // remove it.
 
        ProfilMahasiswa::where('id', $id)->update([
         'nim' => $request->input('nim'),
@@ -145,11 +181,12 @@ class ProfileController extends Controller
         'alamat' => $request->input('alamat'),    
         'lama_studi' => $request->input('lama_studi'),    
         'judul_laporan' => $request->input('judul_laporan'),    
-        'tahun_lulus' => $request->input('tahun_lulus'),    
+        'sosmed' => $request->input('sosmed'),    
         'angkatan' => $request->input('angkatan'),
         'telepon' => $request->input('telepon'),
         'ipk' => $request->input('ipk'),
         'foto' => $file_formatted,
+        'pekerjaan' => $request->input('pekerjaan'),
         'user_id' => Auth::user()->id,
          ]);
 

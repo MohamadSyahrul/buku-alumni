@@ -14,6 +14,7 @@ class AlbumAlumni extends Model
         'nama_album',
         'angkatan', 
         'gambar_album',
+        'tahun_terbit',
         'hapus',
         'created_at',
         'updated_at',

@@ -46,6 +46,7 @@ class AlbumController extends Controller
         AlbumAlumni::create([
             'nama_album' => $request->input('nama_album'),
             'angkatan' => $request->input('angkatan'),
+            'tahun_terbit' => $request->input('tahun_terbit'),
             'gambar_album' => $file_formatted,
         ]);
         return redirect('album-akademik');
@@ -93,6 +94,7 @@ class AlbumController extends Controller
       AlbumAlumni::where('id', $id)->update([
         'nama_album' => $request->input('nama_album'),
         'angkatan' => $request->input('angkatan'),
+        'tahun_terbit' => $request->input('tahun_terbit'),
         'gambar_album' => $file_formatted,
     ]);
       return redirect('album-akademik');

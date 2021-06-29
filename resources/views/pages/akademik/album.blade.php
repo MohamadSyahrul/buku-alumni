@@ -29,7 +29,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                  <th>No</th>
                   <th>Gambar</th>
                   <th>Nama Album</th>
-                  <th>Angkatan</th>
+                  <th>Tahun</th>
                   <th>Detail Album</th>
                   <th>Download Album</th>
                   <th>Action</th>
@@ -43,7 +43,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                     <td>{{$key+1}}</td>
                     <td><img src="{{ asset('/Akademik-Album/'.$album->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td>
                     <td>{{$album->nama_album}}</td>
-                    <td>{{$album->angkatan}}</td>
+                    <td>{{$album->tahun_terbit}}</td>
                     <td> <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
                           <a href="{{ url('detail-album-alumni',$album->angkatan) }}">
                           <i class="fas fa-link">                            
@@ -119,6 +119,14 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
            </div>
            <div class="col-lg-8">
              <input type="text" class="form-control" name="angkatan">
+           </div>
+         </div>
+          <div class="form-group row">
+           <div class="col-lg-3">
+             <label class="col-form-label">Tahun Terbit</label>
+           </div>
+           <div class="col-lg-8">
+             <input type="text" class="form-control" name="tahun_terbit">
            </div>
          </div>
          <div class="form-group row">

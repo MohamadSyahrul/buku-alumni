@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfilMahasiswa;
-
+use App\Models\ValidasiStatusMahasiswa;
+use Auth;
 class AlumniController extends Controller
 {
     /**
@@ -17,10 +18,11 @@ class AlumniController extends Controller
         $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
             $q->where('role_id', 'mahasiswa');
         }])->get();
+       
          return view('pages.alumni', [
             // "prodi"=> ProdiAlumni::all(),
             "mahasiswa" => $Pm,
-            // "album" => $album
+            // "validate" => $validate
 ]);
     }
 
@@ -51,9 +53,14 @@ class AlumniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+         ProfilMahasiswa::where('id', $id)->update([
+        'status' => 'Tervalidasi',
+    ]);
+        // Belum Tervalidasi
+    return redirect('alumni');
+
     }
 
     /**
