@@ -39,12 +39,13 @@ class ImportController extends Controller
     {
         // validasi
         $this->validate($request, [
-            // 'file' => 'required|mimes:csv,xls,xlsx'
-            'file' => 'required|mimes:csv'
+            'file' => 'required|mimes:csv,xls,xlsx'
+            // 'file' => 'required|mimes:csv'
         ]);
  
         // menangkap file excel
         $file = $request->file('file');
+        // $file = Excel::import($file)->convert('xls');
  
         // membuat nama file unik
         $nama_file = date('Y-M-d').$file->getClientOriginalName();
@@ -61,7 +62,7 @@ class ImportController extends Controller
         $file->move('data_mahasiswa_siswa',$nama_file);
  // dd(public_path('data_siswa/'.$nama_file));
         // import data
-         Excel::import(new MahasiswaImport, public_path('data_mahasiswa_siswa/'.$nama_file));
+         Excel::import(new MahasiswaImport, public_path('data_mahasiswa_siswa/'.$nama_file) );
          // Excel::import(new DetailSiswaImport, public_path('data_siswa/'.$nama_file));
         
         // notifikasi dengan session

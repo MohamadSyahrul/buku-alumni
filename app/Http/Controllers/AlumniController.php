@@ -15,9 +15,7 @@ class AlumniController extends Controller
      */
     public function index(Request $request)
     {
-        $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
-            $q->where('role_id', 'mahasiswa');
-        }])->get();
+        $Pm =  ProfilMahasiswa::with(['user_detail'])->get();
        
          return view('pages.alumni', [
             // "prodi"=> ProdiAlumni::all(),

@@ -58,7 +58,7 @@ Route::resource('profile', ProfileController::class)->only([
 Route::resource('detail-alumni_mahasiswa', DetailAlumniController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy', 'show'
 ])->middleware(['auth']);
-// Route::get('edit-alumni_mahasiswa', EditProfileAlumni::class)->only([
+// Route::resource('detail-all-alumni', DetailAlumniController::class)->only([
 //     'index'
 // ])->middleware(['auth']);
 // Route::get('/edit-alumni_mahasiswa/{id}', 'EditProfileAlumni@index');

@@ -39,7 +39,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                </thead>
                <tbody>
                  @foreach($mahasiswa as $key=> $mahasiswa)
-
+                 
                  <tr>
 
                   <td>{{$key+1}}</td>

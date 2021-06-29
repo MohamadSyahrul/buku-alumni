@@ -12,9 +12,17 @@ class DetailAlumniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      
+       $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
+        $q->where('role_id', 'mahasiswa');
+    }])->get();
+       // dd($Pm);
+       return view('pages.akademik.detail_album', [
+            // "prodi"=> ProdiAlumni::all(),
+        "mahasiswa" => $Pm,
+            // "album" => $album
+    ]);
     }
 
     /**
