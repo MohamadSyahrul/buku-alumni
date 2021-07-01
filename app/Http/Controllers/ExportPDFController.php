@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfilMahasiswa;
+use App\Models\AlbumAlumni;
 use PDF;
 
 class ExportPDFController extends Controller
@@ -15,16 +16,16 @@ class ExportPDFController extends Controller
      */
     public function index(Request $request, $id)
     {
-         $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
+       $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
         $q->where('role_id', 'mahasiswa');
     }])->where('angkatan', $id)->get();
        // dd($Pm);
-       
- return PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled' => true,'isHtml5ParserEnabled' => true])->loadView('pages.akademik.cetak_album', [
-            // "prodi"=> ProdiAlumni::all(),
-        "mahasiswa" => $Pm,
-            // "album" => $album
-    ])->stream();
+       $album = AlbumAlumni::where('hapus', 0)->where('angkatan', $id)->first();
+ // return PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled' => true,'isHtml5ParserEnabled' => true])->loadView('pages.akademik.cetak_album', [
+ //            // "prodi"=> ProdiAlumni::all(),
+ //        "mahasiswa" => $Pm,
+ //            // "album" => $album
+ //    ])->stream();
 
       // $pdf = PDF::loadView('pages.akademik.cetak_album', [
             // "prodi"=> ProdiAlumni::all(),
@@ -33,11 +34,21 @@ class ExportPDFController extends Controller
     // ])->setPaper('a4', 'potrait')->setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif'])->setBasePath();
     // 'isRemoteEnabled' => true]);
      // 'isHtml5ParserEnabled' => true]);
-ini_set('max_execution_time', 300); //300 seconds = 5 minutes 
+// ini_set('max_execution_time', 300); //300 seconds = 5 minutes 
 
 
 // return $pdf->stream('Album Angkatan/'.$id.'.pdf');
-    }
+
+
+// share data to view
+       view()->share('mahasiswa',$Pm);
+       $pdf = PDF::loadView('pages.akademik.cetak_album', [$Pm , $album]);
+
+      // download PDF file with download method
+      // return $pdf->download('Album Angkatan/'.$id.'.pdf');
+       return $pdf->download('Album Angkatan/'.$id.'.pdf');
+
+   }
 
     /**
      * Show the form for creating a new resource.
