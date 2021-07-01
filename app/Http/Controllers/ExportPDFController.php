@@ -38,11 +38,15 @@ class ExportPDFController extends Controller
 
 
 // return $pdf->stream('Album Angkatan/'.$id.'.pdf');
-
-
+        $pdf = PDF::loadView('pages.akademik.cetak_album',
+[
+            // "prodi"=> ProdiAlumni::all(),
+        "mahasiswa" => $Pm,
+            "album" => $album
+]);
 // share data to view
-       view()->share('mahasiswa',$Pm);
-       $pdf = PDF::loadView('pages.akademik.cetak_album', [$Pm , $album]);
+       // view()->share(['mahasiswa',$Pm , 'album' , $album]);
+       // $pdf = PDF::loadView('pages.akademik.cetak_album', [$Pm , $album]);
 
       // download PDF file with download method
       // return $pdf->download('Album Angkatan/'.$id.'.pdf');
