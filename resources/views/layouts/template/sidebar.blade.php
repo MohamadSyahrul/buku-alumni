@@ -89,11 +89,14 @@
                                 data-feather="book"></i><span class="menu-title text-truncate"
                                 data-i18n="Calendar">Album</span></a>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('user-mahasiswa')}}"><i
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i
                                 data-feather="users"></i><span class="menu-title text-truncate"
                                 data-i18n="Todo">Alumni</span></a>
                     </li>
-
+                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('user-mahasiswa')}}"><i
+                                data-feather="users"></i><span class="menu-title text-truncate"
+                                data-i18n="Todo">Akun Mahasiswa</span></a>
+                    </li>
                     {{-- <div class="mt-3 space-y-1">
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

@@ -68,7 +68,7 @@ class ProfileController extends Controller
     {
 
         $file = $request->file('foto');
-        $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
+        $filename = $request->input('nim').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
         // $file->move('Foto-Mahasiswa/', $file_formatted);
 
@@ -83,6 +83,7 @@ class ProfileController extends Controller
         // The below part is optional, this is if uploads "belongTo" a "User"
         // so you automatically insert the relation, if you don't need it, just
         // remove it.
+        $img->save('Foto-Mahasiswa/'. $file_formatted ,80);
 
        ProfilMahasiswa::create([
         'nim' => $request->input('nim'),
@@ -155,7 +156,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $file = $request->file('foto');
-        $filename = $request->input('nim').'-'.$request->input('nama').'-'.$file->getClientOriginalName();
+        $filename = $request->input('nim').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
         // $file->move('Foto-Mahasiswa/', $file_formatted);
 
@@ -170,6 +171,7 @@ class ProfileController extends Controller
         // The below part is optional, this is if uploads "belongTo" a "User"
         // so you automatically insert the relation, if you don't need it, just
         // remove it.
+        $img->save('Foto-Mahasiswa/'. $file_formatted ,80);
 
        ProfilMahasiswa::where('id', $id)->update([
         'nim' => $request->input('nim'),
