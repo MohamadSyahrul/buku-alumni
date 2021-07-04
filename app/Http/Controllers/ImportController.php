@@ -38,10 +38,10 @@ class ImportController extends Controller
     public function store(Request $request)
     {
         // validasi
-        $this->validate($request, [
+        // $this->validate($request, [
             // 'file' => 'required|mimes:csv,xls,xlsx'
-            'file' => 'required|mimes:csv'
-        ]);
+        //     'file' => 'required|mimes:csv'
+        // ]);
  
         // menangkap file excel
         $file = $request->file('file');
