@@ -32,7 +32,7 @@
 		<tr>
 			
 		<!--  -->
-			<td align="left"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/></td>
+			<td align="right"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/></td>
 		</tr>
 
 	</table>
@@ -53,7 +53,7 @@
 			@if($mahasiswa->count() > 0)
 
 			@foreach($mahasiswa as $mahasiswa)
-			<tr style="color: lightgray">
+			<tr >
 				@if($mahasiswa->foto == null)
 				<td style="margin-left: 1em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 230px; max-height: 150px;"> 
 				</td>
