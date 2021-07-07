@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
 <head>
 	<meta charset="UTF-8">
-	<title>PT. PLN Persero</title>
+	<title>Buku Alumni</title>
 	<style type="text/css">
 		* {
 			font-family: Verdana, Arial, sans-serif;
@@ -13,9 +13,10 @@
 		tfoot tr td{
 			font-weight: bold;
 			font-size: x-small;
+			
 		}
 		.gray {
-			background-color: lightgray
+			background-color: #34a1eb;
 		}
 		pre {
 			text-align: left;
@@ -24,19 +25,14 @@
 	</style>
 
 </head>
-<body >
 
+<body style="background-color: #daeaf5;">
+<img src="{{ ('Akademik-Album/'. $album->gambar_album) }}" alt="" width="100%"/ style="padding-bottom: 10em; padding-top: 10em">
 	<table width="100%">
 		<tr>
 			
-			<td align="left">
-				<h3>Politeknik Negeri Banyuwangi</h3>
-				<pre>
-					{{ $album->nama_album }}<br>
-					{{ $album->tahun_terbit }}<br>
-				</pre>
-			</td>
-			<td align="right"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/></td>
+		<!--  -->
+			<td align="left"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/></td>
 		</tr>
 
 	</table>
@@ -52,24 +48,20 @@
 	
 	<table width="100%" style="text-transform: uppercase;">
 		
-		<tbody>
+		<tbody >
 			<?php $number=1;?>
 			@if($mahasiswa->count() > 0)
 
 			@foreach($mahasiswa as $mahasiswa)
-
-			<tr style="width: 20%">
+			<tr style="color: lightgray">
 				@if($mahasiswa->foto == null)
-				<td rowspan="5">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 200px; max-height: 150px;"> <br>
+				<td style="margin-left: 1em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 230px; max-height: 150px;"> 
 				</td>
 				@else
-				<td rowspan="5">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 200px; max-height: 150px;"> <br>
+				<td style="margin-left: 1em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 230px; max-height: 150px;"> 
 				</td>
 				@endif
-				<hr>
-			</tr>
-			<tr style="width: 80%">
-				<td>NIM : {{ $mahasiswa->nim }}<br>
+				<td style="padding-right: 9em">NIM : {{ $mahasiswa->nim }}<br>
 					Nama : {{ $mahasiswa->nama }}<br>
 					Tempat/Tanggal Lahir  : {{ $mahasiswa->tempat_lahir }}, {{Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->translatedFormat('d F Y') }}<br>
 					Jenis Kelamin : {{ $mahasiswa->jenis_kelamin }}<br>
@@ -77,10 +69,12 @@
 					Alamat : {{ \Illuminate\Support\Str::limit($mahasiswa->alamat, 30, $end='...') }}<br>
 					Telepon :{{ $mahasiswa->telepon  }}<br>
 					Lama Studi : {{ $mahasiswa->lama_studi }}<br>
+					Judul TA : {{ $mahasiswa->judul_laporan }} <br>
 					Judul TA : {{ \Illuminate\Support\Str::limit($mahasiswa->judul_laporan, 30, $end='...') }}<br>
 					IPK : {{ $mahasiswa->ipk }}</td><br>
 
 				</tr>
+				
 
 				<?php $number++;?> @endforeach
 				@else
@@ -90,8 +84,7 @@
 
 			
 		</table>
-		<br><br><br>
-		<footer><center><span>Buku Alumni {{ $album->tahun_terbit }}</span></center></footer>
+		
 
 	</body>
 	</html>

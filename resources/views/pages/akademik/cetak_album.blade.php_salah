@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>PT. PLN Persero</title>
+<title>Buku Alumni</title>
  <!-- <link rel="icon" type="image/jpg" href="{{ ('/startbootstrap-sb-admin-2-master/img/Logo-PLN-Terbaru.jpg') }} "> -->
 <style type="text/css">
     * {
@@ -25,6 +25,7 @@
 </style>
 
 </head>
+
 <body>
 
   <table width="100%">

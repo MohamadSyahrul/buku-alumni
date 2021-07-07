@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ProfilMahasiswa;
 use App\Models\AlbumAlumni;
 use PDF;
-
+use View;
 class ExportPDFController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class ExportPDFController extends Controller
     {
        $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
         $q->where('role_id', 'mahasiswa');
-    }])->where('angkatan', $id)->get();
+    }])->where('angkatan', $id)->limit(3)->get();
        // dd($Pm);
        $album = AlbumAlumni::where('hapus', 0)->where('angkatan', $id)->first();
  // return PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled' => true,'isHtml5ParserEnabled' => true])->loadView('pages.akademik.cetak_album', [
@@ -44,12 +44,14 @@ class ExportPDFController extends Controller
         "mahasiswa" => $Pm,
             "album" => $album
 ]);
+        // ->setOptions(['cover', View::make('pages.akademik.cetak_cover_album', $album)]);
 // share data to view
        // view()->share(['mahasiswa',$Pm , 'album' , $album]);
        // $pdf = PDF::loadView('pages.akademik.cetak_album', [$Pm , $album]);
 
       // download PDF file with download method
       // return $pdf->download('Album Angkatan/'.$id.'.pdf');
+        // $pdf->setOption('cover', View::make('pages.akademik.cetak_album', $album));
        return $pdf->download('Album Angkatan/'.$id.'.pdf');
 
    }

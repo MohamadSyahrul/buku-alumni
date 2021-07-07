@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43304a15e84457dde19b2810dfefc028",
+    "content-hash": "f33925c32c4f85bb1e6371749fb6b7ea",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3027,6 +3027,56 @@
                 }
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "rguedes/pdfmerger",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rguedes/PDFMerger.git",
+                "reference": "8e1caa1093160107bb1796ce07d9fc3d6769fc34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rguedes/PDFMerger/zipball/8e1caa1093160107bb1796ce07d9fc3d6769fc34",
+                "reference": "8e1caa1093160107bb1796ce07d9fc3d6769fc34",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PDFMerger": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Myo Kyaw Htun",
+                    "homepage": "https://github.com/myokyawhtun"
+                },
+                {
+                    "name": "Rolando Guedes",
+                    "homepage": "https://github.com/rguedes"
+                }
+            ],
+            "description": "PDFMerger for PHP",
+            "homepage": "https://github.com/rguedes/PDFMerger",
+            "keywords": [
+                "pdf",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/rguedes/PDFMerger/issues",
+                "source": "https://github.com/rguedes/PDFMerger/tree/1.0.4"
+            },
+            "abandoned": true,
+            "time": "2019-01-04T09:47:31+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
