@@ -123,7 +123,7 @@ class ProfileController extends Controller
     {
          $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
             $q->where('role_id', 'mahasiswa');
-        }])->where('user_id', Auth::user()->id)->get();
+        }])->where('id', $id)->get();
         $data_user = User::where('id',Auth::user()->id)->first();
         // dd($Pm);
             $album = AlbumAlumni::all();

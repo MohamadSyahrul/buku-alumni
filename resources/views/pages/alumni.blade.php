@@ -32,9 +32,12 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                    <th>Nama Mahasiswa</th>
                    <th>Jurusan</th>
                    <th>Angkatan</th>
+                     @if(Auth::user()->role_id=="mahasiswa") 
+          <th> IPK </th>   
+             @else
                    <!-- <th>IPK</th> -->
                    <th>Action</th>
-
+                   @endif
                  </tr>
                </thead>
                <tbody>
@@ -48,7 +51,9 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                   <td>{{$mahasiswa->nama}}</td>
                   <td>{{$mahasiswa->prodi}}</td>
                   <td>{{$mahasiswa->angkatan}}</td>
-             
+                @if(Auth::user()->role_id=="mahasiswa") 
+            <td>  {{$mahasiswa->ipk}} </td>
+             @else
                   <td class="flex"  style="margin-top: 1em;">
                     <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
                       <a href="{{ url('detail-alumni_mahasiswa',$mahasiswa->user_id) }}">
@@ -57,8 +62,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </i>
                       </a>
                     </button>
-                    
-
+         
                     @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id == $mahasiswa->user_detail->id)     
                     <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="padding: 0.5em;margin-right: 1em;background-color:#7367F0" disabled>
                       <i class="fas fa-edit" style="color: #e5e7eb">                            
@@ -88,6 +92,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                     
 
                   </td>
+                  @endif
                 </tr>
                 @endforeach
                 @endif
