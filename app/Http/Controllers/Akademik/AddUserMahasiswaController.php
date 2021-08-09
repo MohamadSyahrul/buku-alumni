@@ -113,6 +113,6 @@ class AddUserMahasiswaController extends Controller
            User::where('id', $id)->update([
             'hapus' => 1,
         ]);
-          return redirect('prodi');
+          return redirect('user-mahasiswa');
     }
 }

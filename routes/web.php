@@ -33,9 +33,11 @@ use App\Http\Controllers\AlumniController;
 Route::resource('album-akademik', AlbumController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy', 
 ])->middleware(['auth']);
+
 Route::resource('detail-album-alumni/{id}', DetailAlbumController::class)->only([
     'index'
 ])->middleware(['auth']);
+
 Route::resource('prodi', AddProdiController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy'
 ])->middleware(['auth']);

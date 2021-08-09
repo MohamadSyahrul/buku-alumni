@@ -7,6 +7,8 @@
         @yield('title')
     </title>
     @include('layouts.head')
+
+    @stack('plugin-style')
 </head>
 <!-- END: Head-->
 
@@ -55,6 +57,11 @@
             }
         })
     </script>
+
+    @stack('custom-script')
+    
+    @stack('plugin-script')
+
 </body>
 <!-- END: Body-->
 
