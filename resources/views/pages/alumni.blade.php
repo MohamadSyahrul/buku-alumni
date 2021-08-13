@@ -29,14 +29,14 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                   <tr>
                    <th>No</th>
                    <th>NIM</th>
-                   <th>Nama Mahasiswa</th>
+                   <th style="text-align: center;">Nama Mahasiswa</th>
                    <th>Jurusan</th>
                    <th>Angkatan</th>
                      @if(Auth::user()->role_id=="mahasiswa") 
           <th> IPK </th>   
              @else
                    <!-- <th>IPK</th> -->
-                   <th>Action</th>
+                   <th colspan="3" style="text-align: center;">Action</th>
                    @endif
                  </tr>
                </thead>
@@ -48,30 +48,29 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                   <td>{{$key+1}}</td>
                   <!--    <td><img src="{{ asset('/Akademik-Album/'.$mahasiswa->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td> -->
                   <td>{{$mahasiswa->nim}}</td>
-                  <td>{{$mahasiswa->nama}}</td>
+                  <td >{{$mahasiswa->nama}}</td>
                   <td>{{$mahasiswa->prodi}}</td>
                   <td>{{$mahasiswa->angkatan}}</td>
                 @if(Auth::user()->role_id=="mahasiswa") 
             <td>  {{$mahasiswa->ipk}} </td>
              @else
-                  <td class="flex"  style="margin-top: 1em;">
-                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                    <td>
+                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-primary" style="padding: 1em;margin-right: -1.5em">
                       <a href="{{ url('detail-alumni_mahasiswa',$mahasiswa->user_id) }}">
-                        <i class="fas fa-edit">                            
+                        <i class="fas fa-edit" >                            
                           Detail
                         </i>
                       </a>
                     </button>
-         
+                    </td>
+                  <td>
                     @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id == $mahasiswa->user_detail->id)     
-                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="padding: 0.5em;margin-right: 1em;background-color:#7367F0" disabled>
-                      <i class="fas fa-edit" style="color: #e5e7eb">                            
-                        Validate
-                      </i>
+                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-success"  style="padding-top: 1em;padding-bottom: 1em;padding-right: 2.2em;padding-left: 2.2em;margin-right: -1.5em" disabled>
+                    <i data-feather="check"></i>
 
                     </button>
                     @else
-                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                    <button class="text-red-500 hover:text-red-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-danger" style="padding: 1em;margin-right: -1.5em">
                       <a href="{{ route('alumni.show',$mahasiswa->id) }}">
                         <i class="fas fa-edit">                            
                           Validate
@@ -80,18 +79,15 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                     </button>
 
                     @endif
-
-
-                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 " style="margin-right: 1em;">
+                    </td>
+                    <td>
+                    <button class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-primary" style="padding: 1em;">
                       <a href="{{ route('profile.show',$mahasiswa->id) }}">
-                        <i class="fas fa-edit">                            
-                          Edit
-                        </i>
+                      <i data-feather="edit"></i>
                       </a>
                     </button>
                     
-
-                  </td>
+                    </td>
                   @endif
                 </tr>
                 @endforeach

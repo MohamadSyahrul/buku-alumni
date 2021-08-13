@@ -52,7 +52,7 @@ class ExportPDFController extends Controller
       // download PDF file with download method
       // return $pdf->download('Album Angkatan/'.$id.'.pdf');
         // $pdf->setOption('cover', View::make('pages.akademik.cetak_album', $album));
-       return $pdf->download('Album Angkatan/'.$id.'.pdf');
+       return $pdf->stream('Album Angkatan/'.$id.'.pdf');
 
    }
 

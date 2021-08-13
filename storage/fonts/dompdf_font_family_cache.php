@@ -99,4 +99,9 @@
     '500' => $fontDir . '/montserrat_500_51d32715a2529ff80180b0dec7eb7073',
     '600' => $fontDir . '/montserrat_600_e1bd5923511b8d8a0a196b1017df92a7',
   ),
+  'nunito' => array(
+    'normal' => $fontDir . '/nunito_normal_46b9b3b48cc3ddbae60da82f1c1c5d29',
+    '600' => $fontDir . '/nunito_600_0f08625611c8a9cf8d1f0e5a4e3b8e39',
+    'bold' => $fontDir . '/nunito_bold_23f6d1b3589b1fb8a1a0052cb8778ab4',
+  ),
 ) ?>
