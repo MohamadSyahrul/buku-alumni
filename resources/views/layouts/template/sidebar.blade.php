@@ -42,18 +42,18 @@
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i
+            <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}" href="{{url('dashboard')}}"><i
                         data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Home">Home</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('profile')}}"><i
+            <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('profile') ? 'active' : '' }}" href="{{url('profile')}}"><i
                         data-feather="user"></i><span class="menu-title text-truncate" data-i18n="Profile">Data
                         diri</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i
+            <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('alumni') ? 'active' : '' }}" href="{{url('alumni')}}"><i
                         data-feather="users"></i><span class="menu-title text-truncate"
                         data-i18n="Todo">Alumni</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-alumni')}}"><i
+            <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('album-alumni') ? 'active' : '' }}" href="{{url('album-alumni')}}"><i
                         data-feather="book"></i><span class="menu-title text-truncate"
                         data-i18n="Calendar">Album</span></a>
             </li>
@@ -77,24 +77,24 @@
                     <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                             data-feather="more-horizontal"></i>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('dashboard')}}"><i
+                    <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('dashboard') ? 'active' : '' }}" href="{{url('dashboard')}}"><i
                                 data-feather="home"></i><span class="menu-title text-truncate"
                                 data-i18n="Home">Home</span></a>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('prodi')}}"><i
-                                data-feather="user"></i><span class="menu-title text-truncate"
+                    <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('prodi') ? 'active' : '' }}" href="{{url('prodi')}}"><i
+                                data-feather="briefcase"></i><span class="menu-title text-truncate"
                                 data-i18n="Profile">Prodi</span></a>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('album-akademik')}}"><i
+                    <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('album-akademik') ? 'active' : '' }}" href="{{url('album-akademik')}}"><i
                                 data-feather="book"></i><span class="menu-title text-truncate"
                                 data-i18n="Calendar">Album</span></a>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('alumni')}}"><i
+                    <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('alumni') ? 'active' : '' }}" href="{{url('alumni')}}"><i
                                 data-feather="users"></i><span class="menu-title text-truncate"
                                 data-i18n="Todo">Alumni</span></a>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="{{url('user-mahasiswa')}}"><i
-                                data-feather="users"></i><span class="menu-title text-truncate"
+                    <li class=" nav-item"><a class="d-flex align-items-center {{ Request::is('url-mahasiswa') ? 'active' : '' }}" href="{{url('user-mahasiswa')}}"><i
+                                data-feather="archive"></i><span class="menu-title text-truncate"
                                 data-i18n="Todo">Akun Mahasiswa</span></a>
                     </li>
                     {{-- <div class="mt-3 space-y-1">

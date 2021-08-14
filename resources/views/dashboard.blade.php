@@ -97,6 +97,23 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                     </div>
                 </div>
                 <!--/ Statistics Card -->
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="card card-congratulations">
+                        <div class="card-body text-center">
+                            <img src="{{asset('admin/app-assets/images/elements/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
+                            <img src="{{asset('admin/app-assets/images/elements/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
+                            <div class="avatar avatar-xl bg-primary shadow">
+                                <div class="avatar-content">
+                                    <i data-feather="award" class="font-large-1"></i>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h1 class="mb-1 text-white">Congratulations {{Auth::user()->name}},</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </section>
