@@ -8,24 +8,22 @@
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name font-weight-bolder">{{Auth::user()->name}}</span><span
                             class="user-status">{{Auth::user()->email}}</span></div><span class="avatar">
-                            @if(Auth::user()->role_id !="mahasiswa")
-                            <img
-                            class="round" src="{{asset('admin/app-assets/images/portrait/small/avatar-s-11.jpg')}}"
+                        @if(Auth::user()->role_id !="mahasiswa")
+                        <img class="round" src="{{asset('admin/app-assets/images/portrait/small/avatar-s-11.jpg')}}"
                             alt="avatar" height="40" width="40">
-                            @else
-                            <img
-                            class="round" src="{{ Auth::user()->profil->foto }}"
-                            alt="avatar" height="40" width="40">
-                            @endif
+                        @else
+                        {{-- <img --}}
+                        {{-- class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" --}}
+                        {{-- alt="avatar" height="40" width="40"> --}}
+                        @endif
 
-                            <span class="avatar-status-online"></span></span>
+                        <span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                    <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
-                    this.closest('form').submit();"><i class="mr-50"
-                            data-feather="power"></i> Logout</a>
+                        <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault();
+                    this.closest('form').submit();"><i class="mr-50" data-feather="power"></i> Logout</a>
                     </form>
                 </div>
             </li>

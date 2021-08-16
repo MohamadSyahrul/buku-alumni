@@ -1,264 +1,135 @@
-@extends('layouts.master')
+@extends('template.master')
 @section('title')
-Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
+Poliwangi - Alumni <?php echo date("M Y"); ?>
 @endsection
+
 @push('plugin-style')
-
-<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/vendors.min.css')}}">
 <link rel="stylesheet" type="text/css"
-    href="{{asset('admin/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+    href="{{asset('vuexy/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vuexy/app-assets/vendors/css/vendors.min.css')}}">
 @endpush
-{{-- @section('content')
-<x-app-layout>
-  <x-slot name="header">
-
-
-  <!--   <div class="dropdown mb-2" style="background-color: #fff">
-      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#TambahData">Tambah Album Wisuda</button>
-
-    </div> -->
-    <div class="container">
-      <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
-          <!-- Nested Row within Card Body -->
-          <div class="row">
-            @if($mahasiswa->count() < 1)
-
-
-            <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
-              <p style="font-size: 30px"> BELUM ADA ALUMNI</p>
-            </div> 
-            @else
-            <div class="table-responsive">
-              <table id="dataTableExample" class="table">
-                <thead>
-                  <tr>
-                   <th>No</th>
-                   <th>NIM</th>
-                   <th style="text-align: center;">Nama Mahasiswa</th>
-                   <th>Jurusan</th>
-                   <th>Angkatan</th>
-                     @if(Auth::user()->role_id=="mahasiswa") 
-          <th> IPK </th>   
-             @else
-                   <!-- <th>IPK</th> -->
-                   <th colspan="3" style="text-align: center;">Action</th>
-                   @endif
-                 </tr>
-               </thead>
-               <tbody>
-                 @foreach($mahasiswa as $key=> $mahasiswa)
-
-                 <tr>
-
-                  <td>{{$key+1}}</td>
-<!--    <td><img src="{{ asset('/Akademik-Album/'.$mahasiswa->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td> -->
-<td>{{$mahasiswa->nim}}</td>
-<td>{{$mahasiswa->nama}}</td>
-<td>{{$mahasiswa->prodi}}</td>
-<td>{{$mahasiswa->angkatan}}</td>
-@if(Auth::user()->role_id=="mahasiswa")
-<td> {{$mahasiswa->ipk}} </td>
-@else
-<td>
-    <button
-        class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-primary"
-        style="padding: 1em;margin-right: -1.5em">
-        <a href="{{ url('detail-alumni_mahasiswa',$mahasiswa->user_id) }}">
-            <i class="fas fa-edit">
-                Detail
-            </i>
-        </a>
-    </button>
-</td>
-<td>
-    @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id == $mahasiswa->user_detail->id)
-    <button
-        class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-success"
-        style="padding-top: 1em;padding-bottom: 1em;padding-right: 2.2em;padding-left: 2.2em;margin-right: -1.5em"
-        disabled>
-        <i data-feather="check"></i>
-
-    </button>
-    @else
-    <button
-        class="text-red-500 hover:text-red-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-danger"
-        style="padding: 1em;margin-right: -1.5em">
-        <a href="{{ route('alumni.show',$mahasiswa->id) }}">
-            <i class="fas fa-edit">
-                Validate
-            </i>
-        </a>
-    </button>
-
-    @endif
-</td>
-<td>
-    <button
-        class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-primary"
-        style="padding: 1em;">
-        <a href="{{ route('profile.show',$mahasiswa->id) }}">
-            <i data-feather="edit"></i>
-        </a>
-    </button>
-
-</td>
-@endif
-</tr>
-@endforeach
-@endif
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</x-slot>
-
-<script type="text/javascript">
-    function editData(id) {
-        console.log(id);
-    }
-
-    function deleteData(id, event) {
-        Swal.fire({
-            title: 'Apakah yakin menghapus data ini ?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus aja!'
-        }).then((result) => {
-            if (result.value) {
-                event.submit();
-
-            }
-        })
-    }
-    $(function () {
-        $("#date").datepicker({
-            dateFormat: 'yy'
-        });
-    });​
-
-</script>
-</x-app-layout>
-<script src="https://unpkg.com/axios/dist/axios.min.js')}}"></script>
-
-@endsection --}}
 
 @section('content')
 <div class="content-overlay"></div>
 <div class="header-navbar-shadow"></div>
 <div class="content-wrapper">
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">DataTables</h2>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="content-body">
-        <!-- Basic table -->
+        <!-- Zero configuration table -->
         <section id="basic-datatable">
-            <!-- Multilingual -->
-            <section id="multilingual-datatable">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header border-bottom">
-                              <h4 class="card-title">
-                                Alumni
-                              </h4>
-                              @if($mahasiswa->count() < 1)
-                              <div class="form-group row" style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
-                                <p style="font-size: 30px"> BELUM ADA ALUMNI</p>
-                              </div> 
-                              @else
-                            </div>
-                            <div class="card-datatable">
-                                <table class="dt-multilingual table">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>NIM</th>
-                                            <th>Nama Mahasiswa</th>
-                                            <th>Jurusan</th>
-                                            <th>Angkatan</th>
-                                            @if(Auth::user()->role_id=="mahasiswa")
-                                            <th> IPK </th>
-                                            @else
-                                            <!-- <th>IPK</th> -->
-                                            <th colspan="3">Action</th>
-                                            @endif
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($mahasiswa as $key=> $mahasiswa)
-
-                                        <tr>
-
-                                            <td>{{$key+1}}</td>
-                                            <!--    <td><img src="{{ asset('/Akademik-Album/'.$mahasiswa->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td> -->
-                                            <td>{{$mahasiswa->nim}}</td>
-                                            <td>{{$mahasiswa->nama}}</td>
-                                            <td>{{$mahasiswa->prodi}}</td>
-                                            <td>{{$mahasiswa->angkatan}}</td>
-                                            @if(Auth::user()->role_id=="mahasiswa")
-                                            <td> {{$mahasiswa->ipk}} </td>
-                                            @else
-                                            <td>
-                                                <button
-                                                    class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-primary"
-                                                    >
-                                                    <a href="{{ url('detail-alumni_mahasiswa',$mahasiswa->user_id) }}">
-                                                        <i class="fas fa-edit">
-                                                            Detail
-                                                        </i>
-                                                    </a>
-                                                </button>
-                                            </td>
-                                            <td>
-                                                @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id ==
-                                                $mahasiswa->user_detail->id)
-                                                <button
-                                                    class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-success"
-                                        
-                                                    disabled>
-                                                    <i data-feather="check"></i>
-
-                                                </button>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Data Alumni</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body card-dashboard">
+                                <div class="table-responsive">
+                                    <table class="table zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>NIM</th>
+                                                <th>Nama Mahasiswa</th>
+                                                <th>Jurusan</th>
+                                                <th>Angkatan</th>
+                                                @if(Auth::user()->role_id=="mahasiswa")
+                                                <th> IPK </th>
                                                 @else
-                                                <button
-                                                    class="text-red-500 hover:text-red-400 hover:text-red capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-danger"
-                                                    >
-                                                    <a href="{{ route('alumni.show',$mahasiswa->id) }}">
-                                                        <i class="fas fa-edit">
-                                                            Validate
-                                                        </i>
-                                                    </a>
-                                                </button>
-
+                                                <!-- <th>IPK</th> -->
+                                                <th colspan="3" class="text-center">Action</th>
                                                 @endif
-                                            </td>
-                                            <td>
-                                                <button
-                                                    class="text-blue-500 hover:text-blue-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-primary"
-                                                    >
-                                                    <a href="{{ route('profile.show',$mahasiswa->id) }}">
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($mahasiswa as $key=> $mahasiswa)
+                                            <tr>
+                                                <td>{{$key+1}}</td>
+                                                <!--    <td><img src="{{ asset('/Akademik-Album/'.$mahasiswa->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td> -->
+                                                <td>{{$mahasiswa->nim}}</td>
+                                                <td>{{$mahasiswa->nama}}</td>
+                                                <td>{{$mahasiswa->prodi}}</td>
+                                                <td>{{$mahasiswa->angkatan}}</td>
+                                                @if(Auth::user()->role_id=="mahasiswa")
+                                                <td> {{$mahasiswa->ipk}} </td>
+                                                @else
+                                                <td>
+                                                    <a href="{{ url('detail-alumni_mahasiswa',$mahasiswa->user_id) }}"
+                                                        class="btn btn-warning" title="Detail">
+                                                        <i data-feather='external-link'></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id
+                                                    ==
+                                                    $mahasiswa->user_detail->id)
+                                                    <button class="btn btn-success">
+                                                        <i data-feather="check"></i>
+                                                    </button>
+                                                    @else
+                                                    <a href="{{ route('alumni.show',$mahasiswa->id) }}"
+                                                        class="btn btn-info">
+                                                        Validate
+                                                    </a>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('profile.show',$mahasiswa->id) }}"
+                                                        class="btn btn-primary" title="Edit">
                                                         <i data-feather="edit"></i>
                                                     </a>
-                                                </button>
 
-                                            </td>
-                                            @endif
-                                        </tr>
-                                        @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
+                                                </td>
+                                                @endif
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!--/ Multilingual -->
-
+            </div>
+        </section>
+        <!--/ Zero configuration table -->
     </div>
 </div>
 @endsection
+
+@push('plugin-script')
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/js/scripts/datatables/datatable.js')}}"></script>
+@endpush
+
+@push('custom-script')
+<script>
+    $.fn.dataTable.ext.errMode = 'throw';
+    $(window).on('load', function () {
+        if (feather) {
+            feather.replace({
+                width: 14,
+                height: 14
+            });
+        }
+    })
+
+</script>
+@endpush

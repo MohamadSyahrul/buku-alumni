@@ -1,77 +1,85 @@
-@extends('layouts.master')
+@extends('template.master')
 @section('title')
-Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
+Poliwangi - Prodi <?php echo date("M Y"); ?>
 @endsection
 
 @push('plugin-style')
-<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/tables/datatable/rowGroup.bootstrap4.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vuexy/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('vuexy/app-assets/vendors/css/vendors.min.css')}}">
 @endpush
+
 @section('content')
 <div class="content-overlay"></div>
 <div class="header-navbar-shadow"></div>
 <div class="content-wrapper">
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">DataTables</h2>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="content-body">
-        <!-- Multilingual -->
-        <section id="multilingual-datatable">
+        <!-- Zero configuration table -->
+        <section id="basic-datatable">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header border-bottom">
+                        <div class="card-header">
                             <h4 class="card-title">Program Studi</h4>
                             <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                 data-target="#TambahData">Tambah
                                 Prodi</button>
-                                {{-- @if($prodi->count() < 1) <div class="form-group row"
-                            style="padding-top: 4em;padding-bottom: 4em; margin-left: 23em;">
-                            <p style="font-size: 30px"> BELUM ADA Prodi</p> --}}
                         </div>
-                        {{-- @else --}}
-                        <div class="card-datatable">
-                            <table class="dt-multilingual table">
-                                <thead>
-                                    <tr>
-                                      <th>No</th>
-                                      <th>Nama Prodi</th>
-                                      <th>Grade</th>
-                                      <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                  @foreach($prodi as $key => $prodi)
-                                  <tr>
-  
-                                      <td>{{$key+1}}</td>
-                                      <td>{{$prodi->nama_prodi}}</td>
-                                      <td>{{$prodi->grade}}</td>
-                                      <td>
-                                              <a href="{{ route('prodi.edit',$prodi->id) }}" class="btn btn-icon btn-success mb-1">
-                                                <i data-feather="edit"></i>
-                                              </a>
-  
-                                          <form method="POST" action="{{ route('prodi.destroy', $prodi->id)}}"
-                                              onclick="deleteData('{{$prodi->id}}', this)">
-                                              @csrf
-                                              @method('DELETE')
-                                              <button type="submit"
-                                                  class="btn btn-icon btn-danger">
-                                                  <i data-feather='trash-2'></i>
-                                              </button>
-                                          </form>
-                                      </td>
-                                  </tr>
-                                  @endforeach
-                                  {{-- @endif --}}
-                                </tbody>
-                            </table>
+                        <div class="card-content">
+                            <div class="card-body card-dashboard">
+                                <div class="table-responsive">
+                                    <table class="table zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Prodi</th>
+                                                <th>Grade</th>
+                                                <th>Action</th>
+                                              </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($prodi as $key => $prodi)
+                                            <tr>
+            
+                                                <td>{{$key+1}}</td>
+                                                <td>{{$prodi->nama_prodi}}</td>
+                                                <td>{{$prodi->grade}}</td>
+                                                <td>
+                                                        <a href="{{ route('prodi.edit',$prodi->id) }}" class="btn btn-icon btn-success mb-1">
+                                                          <i data-feather="edit"></i>
+                                                        </a>
+            
+                                                    <form method="POST" action="{{ route('prodi.destroy', $prodi->id)}}"
+                                                        onclick="deleteData('{{$prodi->id}}', this)">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-icon btn-danger">
+                                                            <i data-feather='trash-2'></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                       
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!--/ Multilingual -->
+        <!--/ Zero configuration table -->
     </div>
 </div>
 
@@ -116,50 +124,31 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
         </div>
     </div>
 </div>
-
-
 @endsection
+
+@push('plugin-script')
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('vuexy/app-assets/js/scripts/datatables/datatable.js')}}"></script>
+@endpush
+
 @push('custom-script')
-<script type="text/javascript">
-    function editData(id) {
-        console.log(id);
-    }
-
-    function deleteData(id, event) {
-        Swal.fire({
-            title: 'Apakah yakin menghapus data ini ?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Hapus aja!'
-        }).then((result) => {
-            if (result.value) {
-                event.submit();
-
-            }
-        })
-    }
-    $(function () {
-        $("#date").datepicker({
-            dateFormat: 'yy'
-        });
-    });​
+<script>
+    $.fn.dataTable.ext.errMode = 'throw';
+    $(window).on('load', function () {
+        if (feather) {
+            feather.replace({
+                width: 14,
+                height: 14
+            });
+        }
+    })
 
 </script>
-@endpush
-@push('plugin-script')
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/jszip.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js')}}"></script>
-<script src="{{asset('admin/app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js')}}"></script>
 @endpush

@@ -75,13 +75,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+// template baru
+// Route::get('/dashboard-baru', function () {
+//     return view('dashboard-baru');
+// })->name('dashboard-baru');
 
+// Route::get('/profile-mahasiswa', function () {
+//     return view('pages.mahasiswa.profile_template');
+// })->name('profile-mahasiswa');
 
-// Route::get('/dashboard-analytics', function () {
-//     return view('pages.dashboard-analytics');
-// });
-// Route::get('/dahboard-ecommerce', function () {
-//     return view('pages.dashboard-ecommerce');
-// });
+Route::get('/prodi-baru', function () {
+    return view('pages.akademikprodi-baru');
+})->name('alumni-baru');
 
 require __DIR__.'/auth.php';

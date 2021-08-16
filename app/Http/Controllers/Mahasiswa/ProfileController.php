@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Mahasiswa;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\ProdiAlumni;
-use App\Models\ProfilMahasiswa;
-use App\Models\AlbumAlumni;
-use App\Models\User;
-use Auth;
 use Image;
+use App\Models\User;
+use App\Models\AlbumAlumni;
+use App\Models\ProdiAlumni;
+use Illuminate\Http\Request;
+use App\Models\ProfilMahasiswa;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 class ProfileController extends Controller
 {
     /**
