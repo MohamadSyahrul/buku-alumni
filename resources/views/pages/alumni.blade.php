@@ -225,7 +225,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                                 </button>
                                                 @else
                                                 <button
-                                                    class="text-red-500 hover:text-red-400 hover:text-white capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-danger"
+                                                    class="text-red-500 hover:text-red-400 hover:text-red capitalize md:text-sm text-xs rounded-lg transition-all duration-300 btn-outline-danger"
                                                     >
                                                     <a href="{{ route('alumni.show',$mahasiswa->id) }}">
                                                         <i class="fas fa-edit">

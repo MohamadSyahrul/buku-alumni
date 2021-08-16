@@ -23,20 +23,18 @@
       white-space: pre-line;
     }
   </style>
-<style>
-.page-break {
-    page-break-after: always;
-}
-</style>
 </head>
+
 
 <body>
 <img src="{{ ('Akademik-Album/'. $album->gambar_album) }}" alt="" width="100%"/ style="padding-bottom: 10em; padding-top: 10em">
-  <table width="100%">
+ @foreach($prodi as $prodis)
+  <table width="100%" style="background-color: #7367F0">
     <tr>
-      
-    <!--  -->
-      <td align="right"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/></td>
+        
+            <td align="left" width="30%"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/> </td>
+            <td width="70%"><h2>{{$prodis->nama_prodi}}</h2></td>
+        </div>
     </tr>
 
   </table>
@@ -50,37 +48,43 @@
 
   <br/>
   
-  <table width="100%" style="text-transform: uppercase;">
+  <table width="100%" style="text-transform: uppercase;" >
     
     <tbody >
       <?php $number=1;?>
       @if($mahasiswa->count() > 0)
 
-      @foreach($mahasiswa as $mahasiswa)
-      <tr >
-        @if($mahasiswa->foto == null)
-        <td style="margin-left: 1em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 230px; max-height: 150px;"> 
+      @foreach($mahasiswa as $mahasiswas)
+      @if($mahasiswas->prodi != $prodis->nama_prodi)
+
+      @else
+      <tr>
+        @if($mahasiswas->foto == null)
+        <td style="margin-left: 1em;padding-bottom: 2em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswas->foto) }}" style="max-width: 230px; max-height: 150px;"> 
         </td>
         @else
-        <td style="margin-left: 1em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswa->foto) }}" style="max-width: 230px; max-height: 150px;"> 
+        <td style="margin-left: 1em;padding-bottom: 2em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswas->foto) }}" style="max-width: 230px; max-height: 150px;"> 
         </td>
         @endif
-        <td style="padding-right: 9em">NIM : {{ $mahasiswa->nim }}<br>
-          Nama : {{ $mahasiswa->nama }}<br>
-          Tempat/Tanggal Lahir  : {{ $mahasiswa->tempat_lahir }}, {{Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->translatedFormat('d F Y') }}<br>
-          Jenis Kelamin : {{ $mahasiswa->jenis_kelamin }}<br>
-          Prodi : {{ $mahasiswa->prodi }}<br>
-          Alamat : {{ \Illuminate\Support\Str::limit($mahasiswa->alamat, 30, $end='...') }}<br>
-          Telepon :{{ $mahasiswa->telepon  }}<br>
-          Lama Studi : {{ $mahasiswa->lama_studi }}<br>
-          Judul TA : {{ $mahasiswa->judul_laporan }} <br>
-          Judul TA : {{ \Illuminate\Support\Str::limit($mahasiswa->judul_laporan, 30, $end='...') }}<br>
-          IPK : {{ $mahasiswa->ipk }}</td><br>
+        <td style="padding-right: 9em;padding-bottom: 2em;">NIM : {{ $mahasiswas->nim }}<br>
+          Nama : {{ $mahasiswas->nama }}<br>
+          Tempat/Tanggal Lahir  : {{ $mahasiswas->tempat_lahir }}, {{Carbon\Carbon::parse($mahasiswas->tanggal_lahir)->translatedFormat('d F Y') }}<br>
+          Jenis Kelamin : {{ $mahasiswas->jenis_kelamin }}<br>
+          Prodi : {{ $mahasiswas->prodi }}<br>
+          Alamat : {{ \Illuminate\Support\Str::limit($mahasiswas->alamat, 30, $end='...') }}<br>
+          Telepon :{{ $mahasiswas->telepon  }}<br>
+          Lama Studi : {{ $mahasiswas->lama_studi }}<br>
+          Judul TA : {{ $mahasiswas->judul_laporan }} <br>
+          Judul TA : {{ \Illuminate\Support\Str::limit($mahasiswas->judul_laporan, 30, $end='...') }}<br>
+          IPK : {{ $mahasiswas->ipk }}</td><br>
+       
 
         </tr>
-        
 
-        <?php $number++;?> @endforeach
+        <?php $number++;?>
+        
+        @endif         
+        @endforeach
         @else
 
         @endif
@@ -91,4 +95,6 @@
     <div style="page-break-after: always;"></div>
 
   </body>
+@endforeach
+
   </html>

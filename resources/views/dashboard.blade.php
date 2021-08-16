@@ -16,12 +16,12 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                 <div class="col-xl-4 col-md-6 col-12">
                     <div class="card card-congratulation-medal">
                         <div class="card-body">
-                            <h5>Congratulations 🎉 John!</h5>
-                            <p class="card-text font-small-3">You have won gold medal</p>
+                            <h5>Hai 🎉 {{Auth::user()->name}}</h5>
+                            <p class="card-text font-small-3">Semoga harimu menyenangkan</p>
                             <h3 class="mb-75 mt-2 pt-50">
-                                <a href="javascript:void(0);">$48.9k</a>
+                                <!-- <a href="javascript:void(0);">$48.9k</a> -->
                             </h3>
-                            <button type="button" class="btn btn-primary">View Sales</button>
+                            <!-- <button type="button" class="btn btn-primary">View Sales</button> -->
                             <img src="{{asset('admin/app-assets/images/illustration/badge.svg')}}" class="congratulation-medal"
                                 alt="Medal Pic" />
                         </div>
@@ -109,7 +109,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h1 class="mb-1 text-white">Congratulations {{Auth::user()->name}},</h1>
+                                <h1 class="mb-1 text-white">Selamat Datang {{Auth::user()->name}}</h1>
                             </div>
                         </div>
                     </div>

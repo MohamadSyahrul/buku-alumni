@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProfilMahasiswa;
 use App\Models\AlbumAlumni;
+use App\Models\ProdiAlumni;
 use PDF;
 use View;
 class ExportPDFController extends Controller
@@ -15,12 +16,14 @@ class ExportPDFController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, $id)
-    {
+    { 
+
        $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
         $q->where('role_id', 'mahasiswa');
-    }])->where('angkatan', $id)->limit(3)->get();
+    }])->where('angkatan', $id)->get();
        // dd($Pm);
        $album = AlbumAlumni::where('hapus', 0)->where('angkatan', $id)->first();
+       $prodi = ProdiAlumni::where('hapus', 0)->get();
  // return PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled' => true,'isHtml5ParserEnabled' => true])->loadView('pages.akademik.cetak_album', [
  //            // "prodi"=> ProdiAlumni::all(),
  //        "mahasiswa" => $Pm,
@@ -42,7 +45,8 @@ class ExportPDFController extends Controller
 [
             // "prodi"=> ProdiAlumni::all(),
         "mahasiswa" => $Pm,
-            "album" => $album
+            "album" => $album,
+            "prodi" => $prodi
 ]);
         // ->setOptions(['cover', View::make('pages.akademik.cetak_cover_album', $album)]);
 // share data to view
