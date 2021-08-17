@@ -24,9 +24,8 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         <span class="font-weight-bold d-none d-md-block">Edit</span>
                     </button>
                     @else
-                    <button type="button" class="btn btn-primary">
-                        <i data-feather="edit" class="d-block d-md-none" data-toggle="modal"
-                            data-target="#TambahData"></i>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahData">
+                        <i data-feather="edit" class="d-block d-md-none" ></i>
                         <span class="font-weight-bold d-none d-md-block">Tambah</span>
                     </button>
                     @endif
@@ -172,7 +171,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
     @endforeach
 </div>
 
-{{-- modal --}}
+<!-- modal -->
 @if($mahasiswa->count() > 0)
 <div class="modal fade" id="UbahData" tabindex="-1" role="dialog" aria-labelledby="TambahDataLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -338,8 +337,6 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
     </div>
 </div>
 @else
-
-
 <div class="modal fade" id="TambahData" tabindex="-1" role="dialog" aria-labelledby="TambahDataLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -491,6 +488,22 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-3">
+                                                    <label class="col-form-label">Sosmed</label>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <input type="text" name="sosmed" value="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-lg-3">
+                                                    <label class="col-form-label">Pekerjaan</label>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <input type="text" name="pekerjaan" value="" class="form-control">
+                                                </div>
+                                            </div>
                                             <div class="col-12">
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
@@ -552,7 +565,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 </div>
 @endif
 
-{{-- modal --}}
+<!-- modal -->
 
 @endsection
 @push('plugin-script')
