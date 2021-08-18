@@ -107,11 +107,11 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                     </p>
                                 </div>
                                 <div class="mt-2">
-                                    <h5 class="mb-75">Prodi</h5>
+                                    <h5 class="mb-75">Jenis Kelamin</h5>
                                     <p class="card-text">{{$mahasiswa->jenis_kelamin}}</p>
                                 </div>
                                 <div class="mt-2">
-                                    <h5 class="mb-75">Email</h5>
+                                    <h5 class="mb-75">Prodi</h5>
                                     <p class="card-text">{{$mahasiswa->prodi}}</p>
                                 </div>
                                 <div class="mt-2">

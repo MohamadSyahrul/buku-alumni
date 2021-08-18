@@ -1,6 +1,6 @@
 @extends('template.master')
 @section('title')
-Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
+Poliwangi - User Akademik <?php echo date("M Y"); ?>
 @endsection
 
 @push('plugin-style')
@@ -29,7 +29,7 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">User Mahasiswa</h4>
+                            <h4 class="card-title">User Akademik</h4>
                             <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                                 data-target="#TambahData" style="border-radius: 8px">Tambah User</button>
                         </div>
@@ -48,20 +48,20 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($mahasiswa as $key => $mahasiswa)
+                                            @foreach($admin as $key => $mahasiswa)
                                             <tr>
 
-                                                <td>{{$key+1}}</td>
+                                                <td>{{$loop->iteration}}</td>
                                                 <td>{{$mahasiswa->name}}</td>
                                                 <td>{{$mahasiswa->email}}</td>
                                                 <td>************</td>
                                                 <td class="flex" style="margin-top: 1em;">
-                                                    <a href="{{ route('user-mahasiswa.edit',$mahasiswa->id) }}"
+                                                    <a href="{{ route('user-Admin.edit',$mahasiswa->id) }}"
                                                         class="btn btn-icon btn-success mb-1">
                                                         <i data-feather="edit" title="Edit"></i>
                                                     </a>
                                                     <form method="POST"
-                                                        action="{{ route('user-mahasiswa.destroy', $mahasiswa->id)}}"
+                                                        action="{{ route('user-Admin.destroy', $mahasiswa->id)}}"
                                                         onclick="deleteData('{{$mahasiswa->id}}', this)">
                                                         @csrf
                                                         @method('DELETE')
@@ -98,13 +98,13 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
                 </button>
             </div>
 
-            <form action="{{ url('user-mahasiswa')}}" enctype="multipart/form-data" method="post">
+            <form action="{{ url('user-Admin')}}" enctype="multipart/form-data" method="post">
                 @csrf
 
                 <div class="modal-body">
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            <label class="col-form-label">Nama Mahasiswa</label>
+                            <label class="col-form-label">Nama Akademik</label>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" name="name">
@@ -112,7 +112,7 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            <label class="col-form-label">Email Mahasiswa</label>
+                            <label class="col-form-label">Email Akademik</label>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" name="email">

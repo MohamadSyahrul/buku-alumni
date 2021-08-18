@@ -43,6 +43,8 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                 <th>Jurusan</th>
                                                 <th>Angkatan</th>
                                                 @if(Auth::user()->role_id=="mahasiswa")
+                                                <th> Sosmed </th>
+                                                <th> Telepon </th>
                                                 <th> IPK </th>
                                                 @else
                                                 <!-- <th>IPK</th> -->
@@ -53,13 +55,15 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                         <tbody>
                                             @foreach($mahasiswa as $key=> $mahasiswa)
                                             <tr>
-                                                <td>{{$key+1}}</td>
+                                                <td>{{$loop->iteration}}</td>
                                                 <!--    <td><img src="{{ asset('/Akademik-Album/'.$mahasiswa->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td> -->
                                                 <td>{{$mahasiswa->nim}}</td>
                                                 <td>{{$mahasiswa->nama}}</td>
                                                 <td>{{$mahasiswa->prodi}}</td>
                                                 <td>{{$mahasiswa->angkatan}}</td>
                                                 @if(Auth::user()->role_id=="mahasiswa")
+                                                <td> {{$mahasiswa->sosmed}} </td>
+                                                <td> {{$mahasiswa->telepon}} </td>
                                                 <td> {{$mahasiswa->ipk}} </td>
                                                 @else
                                                 <td>
@@ -82,13 +86,18 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                     </a>
                                                     @endif
                                                 </td>
+                                                {{-- modal --}}
                                                 <td>
-                                                    <a href="{{ route('profile.show',$mahasiswa->id) }}"
+                                                    {{-- <a href="{{ route('profile.show',$mahasiswa->id) }}"
                                                         class="btn btn-primary" title="Edit">
                                                         <i data-feather="edit"></i>
-                                                    </a>
-
+                                                    </a> --}}
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#UbahData{{$mahasiswa->id}}">
+                                                        <i data-feather="edit"></i>
+                                                    </button>
                                                 </td>
+
+
                                                 @endif
                                             </tr>
                                             @endforeach
@@ -105,6 +114,176 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
         <!--/ Zero configuration table -->
     </div>
 </div>
+
+{{-- @foreach($mahasiswa as $item) --}}
+
+{{-- modal --}}
+{{-- <div class="modal fade" id="UbahData{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="TambahDataLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{{ url('profile' , $item->id)}}" enctype="multipart/form-data" method="POST">
+                @csrf
+                @method('PATCH')
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">NIM</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->nim}}" name="nim">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Nama</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->nama}}" name="nama">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Tempat Lahir</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->tempat_lahir}}"
+                                name="tempat_lahir">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Tanggal Lahir</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="date" class="form-control" value="{{$item->tanggal_lahir}}"
+                                name="tanggal_lahir">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Jenis Kelamin</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <select name="jenis_kelamin" class="form-control" value="{{$item->jenis_kelamin}}">
+                                <option value="laki-laki">laki-laki</option>
+                                <option value="perempuan">perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Prodi</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <select name="prodi" class="form-control" value="{{$item->nama_prodi}}">
+                                @foreach($prodi as $key => $PA)
+                                <option value="{{$PA->nama_prodi}}"> {{$PA->nama_prodi}} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Alamat</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->alamat}}" name="alamat">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Telepon/HP</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->telepon}}" name="telepon">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Lama Studi</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->lama_studi}}" name="lama_studi"
+                                placeholder="Contoh 3 Tahun 8 Bulan ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Judul Laporan</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control" value="{{$item->judul_laporan}}"
+                                name="judul_laporan">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Sosmed</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" name="sosmed" value="{{$item->sosmed}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Pekerjaan</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" name="pekerjaan" value="{{$item->pekerjaan}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">IPK</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="text" name="ipk" value="{{$item->ipk}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Angkatan Wisuda</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <select name="angkatan" class="form-control" value="{{$item->angkatan}}">
+                                @if(count(array($album)) <1) <option disabled value=""> BELUM ADA
+                                    ALBUM </option>
+                                    @else
+                                    @foreach($album as $key => $PA)
+                                    <option value="{{$PA->angkatan}}"> {{$PA->angkatan}} </option>
+                                    @endforeach
+                                    @endif
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Foto</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="file" class="form-control" name="foto" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
+                    </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@endforeach --}}
+
 @endsection
 
 @push('plugin-script')

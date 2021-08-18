@@ -1,200 +1,166 @@
-@extends('layouts.master')
+@extends('template.master')
 @section('title')
 Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 @endsection
+@push('plugin-style')
+<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css/pages/page-profile.css')}}">
+@endpush
+
 @section('content')
-<!DOCTYPE html>
-<x-app-layout>
-    <x-slot name="header">
-
-        <div class="container">
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        @foreach($mahasiswa as $row)
-
-                              <table>
-
-                        @if($row->foto == null)
-                        <hr / size="10px">
-
-                        <div class="col-lg-9 d-none d-lg-block "
-                            style="background-image: url('{{ asset('Poliwangi Logo.png')}} '); background-size: cover;background-position: center;max-height: 150px;max-width: 150px;margin-left:5em;margin-top: 10em;margin-right: 5em">
-                        </div>
-                        @else
-                        <hr / size="10px">
-
-                        <div class="col-lg-9 d-none d-lg-block "
-                            style="background-image: url(' {{ asset('Foto-Mahasiswa/'.$row->foto) }} '); background-size: cover;background-position: center;max-height: 150px;max-width: 150px;margin-left:5em;margin-top: 10em;margin-right: 5em">
-                        </div>
-
-                        @endif
-                        
-
-                        <div class="col-lg-7">
-                            <div class="p-0">
-                                @if($mahasiswa->count() > 0)
-                        <hr / size="10px" width="100%">
-
-                                <div class="form-group row" style="padding-top: 1em;">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Nim </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->nim}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Nama </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->nama}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Tempat Lahir </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->tempat_lahir}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Tanggal Lahir </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">
-                                            :{{Carbon\Carbon::parse($row->tanggal_lahir)->translatedFormat('d F Y')}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Jenis Kelamin </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->jenis_kelamin}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Prodi </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->prodi}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Alamat </h6>
-                                    </div>
-                                    <div class="col-lg-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->alamat}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Lama Studi </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->lama_studi}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Judul Laporan </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->judul_laporan}}</div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Sosmed </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->sosmed}}</div>
-                                    </div>
-                                </div>
-                                @if($row->ipk != '')
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6> IPK </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: {{$row->ipk}}</div>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6> IPK </h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">: - </div>
-                                    </div>
-                                </div>
-
-                                @endif
-                                <div class="form-group row">
-                                    <div class="col-sm-2 mb-3 mb-sm-0">
-                                        <h6>Angkatan</h6>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <div class="sidebar-brand-text mx-3">
-                                            : {{$row->angkatan}}
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                @else
-                                <div class="col-lg-9 d-none d-lg-block"
-                                    style="padding-top: 4em;padding-bottom: 4em;margin-left: 20em;">
-                                    <p style="font-size: 30px"> BELUM ADA DATA</p>
-                                </div>
-                                @endif
-                            </div>
-                        </div>
-</table>
-                        @endforeach
-
-                    </div>
+<div class="content-overlay"></div>
+<div class="header-navbar-shadow"></div>
+<div class="content-wrapper">
+    <div class="content-header row">
+        <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="row breadcrumbs-top">
+                <div class="col-12">
+                    <h2 class="content-header-title float-left mb-0">Detail Profile</h2>
                 </div>
             </div>
         </div>
+    </div>
+    @foreach($mahasiswa as $row)
+
+    <div class="content-body">
+        <div id="user-profile">
+            <!-- profile header -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card profile-header mb-2">
+                        <!-- profile cover photo -->
+                        <img class="card-img-top"
+                            src="{{asset('admin/app-assets/images/profile/user-uploads/timeline.jpg')}}"
+                            alt="User Profile Image" />
+                        <!--/ profile cover photo -->
+                        <div class="position-relative">
+                            <!-- profile picture -->
+                            <div class="profile-img-container d-flex align-items-center">
+                                <div class="profile-img">
+                                    <img src="{{ asset('Foto-Mahasiswa/'.$row->foto) }}" class="rounded img-fluid"
+                                        alt="Not Image" />
+                                </div>
+                                <!-- profile title -->
+                                <div class="profile-title ml-3">
+                                    <h2 class="text-white">{{$row->nama}}</h2>
+                                    <p class="text-white">{{$row->nim}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- tabs pill -->
+                        <div class="profile-header-nav">
+                            <!-- navbar -->
+                            <nav
+                                class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
+                                <button class="btn btn-icon navbar-toggler" type="button" data-toggle="collapse"
+                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                    <i data-feather="align-justify" class="font-medium-5"></i>
+                                </button>
+
+                                <!-- collapse  -->
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
+
+                                    </div>
+                                </div>
+                                <!--/ collapse  -->
+                            </nav>
+                            <!--/ navbar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ profile header -->
+
+            <!-- profile info section -->
+            <section id="profile-info">
+                <div class="row">
+                    <!-- left profile info section -->
+                    <div class="col-lg-6 col-12 order-2 order-lg-1">
+                        <!-- about -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="mb-75">Tempat Lahir</h5>
+                                <p class="card-text">
+                                    {{$row->tempat_lahir}}
+                                </p>
+                                <div class="mt-2">
+                                    <h5 class="mb-75">Tanggal Lahir</h5>
+                                    <p class="card-text">
+                                        {{Carbon\Carbon::parse($row->tanggal_lahir)->translatedFormat('d F Y')}}
+                                    </p>
+                                </div>
+                                <div class="mt-2">
+                                    <h5 class="mb-75">Jenis Kelamin</h5>
+                                    <p class="card-text">{{$row->jenis_kelamin}}</p>
+                                </div>
+                                <div class="mt-2">
+                                    <h5 class="mb-75">Prodi</h5>
+                                    <p class="card-text">{{$row->prodi}}</p>
+                                </div>
+                                <div class="mt-2">
+                                    <h5 class="mb-50">Alamat</h5>
+                                    <p class="card-text mb-0">{{$row->alamat}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ about -->
+
+                    </div>
+                    <!--/ left profile info section -->
+                    <div class="col-lg-6 col-12 order-2 order-lg-1">
+                        <!-- about -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="mb-75">Lama Studi</h5>
+                                <p class="card-text">
+                                    {{$row->lama_studi}}
+                                </p>
+                                <div class="mt-2">
+                                    <h5 class="mb-75">Judul Laporan</h5>
+                                    <p class="card-text">{{$row->judul_laporan}}</p>
+                                </div>
+                                <div class="mt-2">
+                                    <h5 class="mb-75">Sosmed</h5>
+                                    <p class="card-text">{{$row->sosmed}}</p>
+                                </div>
+                                @if($row->ipk != '')
+                                <div class="mt-2">
+                                    <h5 class="mb-75">IPK</h5>
+                                    <p class="card-text">{{$row->ipk}}</p>
+                                </div>
+                                @else
+                                <div class="mt-2">
+                                    <h5 class="mb-50">IPK</h5>
+                                    <p class="card-text mb-0"> - </p>
+                                </div>
+                                @endif
+                                <div class="mt-2">
+                                    <h5 class="mb-50">Angkatan</h5>
+                                    <p class="card-text mb-0"> {{$row->angkatan}} </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ about -->
+
+                    </div>
+                </div>
+
+            </section>
+            <!--/ profile info section -->
         </div>
-    </x-slot>
-    
-    <script type="text/javascript">
-        function editData(id) {
-            console.log(id);
-        }
 
-        function deleteData(id, event) {
-            Swal.fire({
-                title: 'Apakah yakin menghapus data ini ?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value) {
-                    event.submit();
+    </div>
 
-                }
-            })
-        }
-        $(function () {
-            $("#date").datepicker({
-                dateFormat: 'yy'
-            });
-        });​
+    @endforeach
+</div>
 
-    </script>
-</x-app-layout>
+
+
+
 @endsection
+@push('plugin-script')
+<script src="{{asset('admin/app-assets/js/scripts/pages/page-profile.js')}}"></script>
+@endpush
