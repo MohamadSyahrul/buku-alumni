@@ -11,6 +11,9 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 <div class="content-overlay"></div>
 <div class="header-navbar-shadow"></div>
 <div class="content-wrapper">
+
+    @foreach($mahasiswa as $mahasiswau)
+    @if($mahasiswau->status != 'Belum Tervalidasi' && $mahasiswau->user_id == $mahasiswau->user_detail->id)
     <div class="content-header row">
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
@@ -33,7 +36,26 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
             </div>
         </div>
     </div>
+    @else
+    <section id="profile-info">
+        <div class="row">
+        <!-- left profile info section -->
+            <div class="col-lg-12 col-12 order-2 order-lg-1">
+            <!-- about -->
+                <div class="card">
+                     <div class="card-body">
+
+                        <h2 class="content-header-title float-left mb-0"> {{ Auth::user()->name }}, Mohon Konfirmasi Ke Pihak Akademik Untuk Validasi Akun Anda</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @endif
+    @endforeach
     @foreach($mahasiswa as $mahasiswa)
+    @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id == $mahasiswa->user_detail->id)
 
     <div class="content-body">
         <div id="user-profile">
@@ -41,6 +63,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
             <div class="row">
                 <div class="col-12">
                     <div class="card profile-header mb-2">
+
                         <!-- profile cover photo -->
                         <img class="card-img-top"
                             src="{{asset('admin/app-assets/images/profile/user-uploads/timeline.jpg')}}"
@@ -87,7 +110,6 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                 </div>
             </div>
             <!--/ profile header -->
-
             <!-- profile info section -->
             <section id="profile-info">
                 <div class="row">
@@ -163,6 +185,8 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                 </div>
 
             </section>
+            @else
+            @endif
             <!--/ profile info section -->
         </div>
 
