@@ -6,6 +6,8 @@ use App\Http\Controllers\Akademik\AlbumController;
 use App\Http\Controllers\Akademik\DetailAlbumController;
 use App\Http\Controllers\Akademik\AddProdiController;
 use App\Http\Controllers\Akademik\AddUserMahasiswaController;
+use App\Http\Controllers\Akademik\AdminController;
+use App\Http\Controllers\Akademik\ProfileController as AkademikProfileController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ExportPDFController;
 use App\Http\Controllers\DetailAlumniController;
@@ -60,6 +62,13 @@ Route::resource('profile', ProfileController::class)->only([
 Route::resource('detail-alumni_mahasiswa', DetailAlumniController::class)->only([
     'index', 'edit', 'store', 'update' , 'destroy', 'show'
 ])->middleware(['auth']);
+
+
+Route::get('change-password', [AkademikProfileController::class, 'index'])->name('change-password')->middleware(['auth']);
+Route::patch('update-password', [AkademikProfileController::class, 'updateUser'])->name('update-user')->middleware(['auth']);
+
+
+Route::resource('user-Admin', AdminController::class)->middleware(['auth']);
 // Route::get('edit-alumni_mahasiswa', EditProfileAlumni::class)->only([
 //     'index'
 // ])->middleware(['auth']);

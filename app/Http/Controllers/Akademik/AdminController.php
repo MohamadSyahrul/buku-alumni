@@ -1,33 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Akademik;
 
-use Auth;
-use App\Models\AlbumAlumni;
-use App\Models\ProdiAlumni;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\ProfilMahasiswa;
-use App\Models\ValidasiStatusMahasiswa;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
-class AlumniController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
-            $q->where('role_id', 'mahasiswa');
-        }])->get();
-        $album = AlbumAlumni::all();
-         return view('pages.alumni', [
-            "prodi"=> ProdiAlumni::all(),
-            "mahasiswa" => $Pm,
-            "album" => $album,
-            // "validate" => $validate
-]);
+        $Pm = User::where('role_id','akademik')->where('hapus',0)->get();
+        return view('pages.akademik.user_admin', [
+           "admin" => $Pm,
+        ]);
     }
 
     /**
@@ -48,7 +40,17 @@ class AlumniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+       
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'role_id' => 'akademik'
+        ]);   
+
+        return redirect('user-Admin');
     }
 
     /**
@@ -57,14 +59,9 @@ class AlumniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-         ProfilMahasiswa::where('id', $id)->update([
-        'status' => 'Tervalidasi',
-    ]);
-        // Belum Tervalidasi
-    return redirect('alumni');
-
+        //
     }
 
     /**
@@ -75,7 +72,10 @@ class AlumniController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pages.akademik.edit_user_admin', [
+            "admin" => User::where('id',$id)->first()
+    ]);
+
     }
 
     /**
@@ -87,7 +87,17 @@ class AlumniController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+       
+        $user = User::where('id',$id)->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            // 'role_id' => 'mahasiswa'
+        ]);   
+
+        return redirect('user-Admin');
     }
 
     /**
@@ -98,6 +108,9 @@ class AlumniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::where('id', $id)->update([
+            'hapus' => 1,
+        ]);
+          return redirect('user-Admin');
     }
 }
