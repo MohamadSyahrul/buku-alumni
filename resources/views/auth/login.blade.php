@@ -13,9 +13,9 @@ Login
     <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-group">
-            <label for="login-email" class="form-label">Email</label>
-            <input class="form-control" id="login-email" type="email" name="email"
-                placeholder="Masukan Email Anda" required autofocus />
+            <label for="login-email" class="form-label">NIM</label>
+            <input class="form-control" id="login-email" type="text" name="nim"
+                placeholder="Masukan NIM Anda" required autofocus />
         </div>
         <div class="form-group">
             <div class="d-flex justify-content-between">
