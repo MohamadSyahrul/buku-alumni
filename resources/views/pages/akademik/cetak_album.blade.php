@@ -52,7 +52,7 @@
     
     <tbody >
       <?php $number=1;?>
-      @if($mahasiswa->count() > 0)
+      @if($mahasiswa->count() >= 1)
 
       @foreach($mahasiswa as $mahasiswas)
       @if($mahasiswas->prodi != $prodis->nama_prodi)
