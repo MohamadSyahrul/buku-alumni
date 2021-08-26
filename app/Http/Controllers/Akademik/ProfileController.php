@@ -18,7 +18,7 @@ class ProfileController extends Controller
           
         $user = User::where('id',Auth::user()->id)->update([
             'name' => $request->name_edit,
-            'email' =>  $request->email_edit,
+            'nim' =>  $request->nim_edit,
             'password' => Hash::make( $request->password,),
             // 'role_id' => 'mahasiswa'
         ]);   

@@ -26,7 +26,7 @@ Buku Alumni
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h1 class="mb-1 text-white">Congratulations {{Auth::user()->name}},</h1>
+                                <h1 class="mb-1 text-white">Selamat Datang {{Auth::user()->name}},</h1>
                                 
                             </div>
                         </div>

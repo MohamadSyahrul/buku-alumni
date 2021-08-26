@@ -44,10 +44,10 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                     <div class="col-12">
                                         <div class="form-group row">
                                             <div class="col-sm-3 col-form-label">
-                                                <label for="email-id">Email</label>
+                                                <label for="email-id">NIM</label>
                                             </div>
                                             <div class="col-sm-9">
-                                               <input type="text" class="form-control" value="{{$user->email}}" name="email_edit" required>
+                                               <input type="text" class="form-control" value="{{$user->nim}}" name="nim_edit" required>
 
                                             </div>
                                         </div>

@@ -89,13 +89,13 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                 </td>
                                                 {{-- modal --}}
                                                 <td>
-                                                    {{-- <a href="{{ route('profile.show',$mahasiswa->id) }}"
+                                                    <a href="{{ route('profile.show',$mahasiswa->id) }}"
                                                         class="btn btn-primary" title="Edit">
                                                         <i data-feather="edit"></i>
-                                                    </a> --}}
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#UbahData{{$mahasiswa->id}}">
+                                                    </a> 
+                                               <!--      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#UbahData{{$mahasiswa->id}}">
                                                         <i data-feather="edit"></i>
-                                                    </button>
+                                                    </button> -->
                                                 </td>
 
 

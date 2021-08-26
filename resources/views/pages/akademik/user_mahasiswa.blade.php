@@ -41,7 +41,7 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama Mahasiswa</th>
-                                                <th>Email</th>
+                                                <th>NIM</th>
                                                 <th>Password</th>
                                                 <th>Action</th>
 
@@ -53,7 +53,7 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
 
                                                 <td>{{$key+1}}</td>
                                                 <td>{{$mahasiswa->name}}</td>
-                                                <td>{{$mahasiswa->email}}</td>
+                                                <td>{{$mahasiswa->nim}}</td>
                                                 <td>************</td>
                                                 <td class="flex" style="margin-top: 1em;">
                                                     <a href="{{ route('user-mahasiswa.edit',$mahasiswa->id) }}"
@@ -112,10 +112,10 @@ Poliwangi - User Mahasiswa <?php echo date("M Y"); ?>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            <label class="col-form-label">Email Mahasiswa</label>
+                            <label class="col-form-label">NIM Mahasiswa</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" name="email">
+                            <input type="text" class="form-control" name="nim">
                         </div>
                     </div>
                     <div class="form-group row">

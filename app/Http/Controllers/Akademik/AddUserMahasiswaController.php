@@ -48,7 +48,7 @@ class AddUserMahasiswaController extends Controller
        
         $user = User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'nim' => $data['nim'],
             'password' => Hash::make($data['password']),
             'role_id' => 'mahasiswa'
         ]);   
@@ -94,7 +94,7 @@ class AddUserMahasiswaController extends Controller
        
         $user = User::where('id',$id)->update([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'nim' => $data['nim'],
             'password' => Hash::make($data['password']),
             // 'role_id' => 'mahasiswa'
         ]);   

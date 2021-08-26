@@ -44,10 +44,10 @@
                                      <div class="col-12">
                                          <div class="form-group row">
                                              <div class="col-sm-3 col-form-label">
-                                                 <label for="email-id">Email</label>
+                                                 <label for="email-id">Username</label>
                                              </div>
                                              <div class="col-sm-9">
-                                                <input type="text" class="form-control" value="{{$admin->email}}" name="email" required>
+                                                <input type="text" class="form-control" value="{{$admin->nim}}" name="nim" required>
 
                                              </div>
                                          </div>
