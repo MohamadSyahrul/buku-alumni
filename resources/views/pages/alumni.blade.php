@@ -17,7 +17,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
         <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">DataTables</h2>
+                    <h2 class="content-header-title float-left mb-0"></h2>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                             <tr>
                                                 <th>No</th>
                                                 <th>NIM</th>
-                                                <th>Nama Mahasiswa</th>
+                                                <th>Mahasiswa</th>
                                                 <th>Jurusan</th>
                                                 <th>Angkatan</th>
                                                 @if(Auth::user()->role_id=="mahasiswa")

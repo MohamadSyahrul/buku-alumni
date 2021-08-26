@@ -40,7 +40,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                 <div class="card">
                      <div class="card-body">
 
-                        <h2 class="content-header-title float-left mb-0"> {{ Auth::user()->name }}, Mohon Konfirmasi Ke Pihak Akademik Untuk Validasi Akun Anda</h2>
+                        <h2 class="content-header-title float-left mb-0"> {{ $mahasiswau->nama }}, Mohon Konfirmasi Ke Pihak Akademik Untuk Validasi Akun Anda</h2>
 
                     </div>
                 </div>
