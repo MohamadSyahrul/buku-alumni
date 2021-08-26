@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //Akademik
 use App\Http\Controllers\Akademik\AlbumController;
+use App\Http\Controllers\API\APIUuserController;
 use App\Http\Controllers\Akademik\DetailAlbumController;
 use App\Http\Controllers\Akademik\AddProdiController;
 use App\Http\Controllers\Akademik\AddUserMahasiswaController;
@@ -69,6 +70,7 @@ Route::patch('update-password', [AkademikProfileController::class, 'updateUser']
 
 
 Route::resource('user-Admin', AdminController::class)->middleware(['auth']);
+Route::resource('api-user', APIUuserController::class);
 // Route::get('edit-alumni_mahasiswa', EditProfileAlumni::class)->only([
 //     'index'
 // ])->middleware(['auth']);

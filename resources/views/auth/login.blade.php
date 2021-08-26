@@ -7,8 +7,8 @@ Login
 
 @section('content')
 <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-    <h2 class="card-title font-weight-bold mb-1">Welcome to Vuexy! 👋</h2>
-    <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+    <h2 class="card-title font-weight-bold mb-1">Buku Alumni <!-- 👋 --></h2>
+    <p class="card-text mb-2"></p>
     
     <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
         @csrf
@@ -20,9 +20,9 @@ Login
         <div class="form-group">
             <div class="d-flex justify-content-between">
                 <label for="login-password">Password</label>
-                <a href="page-auth-forgot-password-v1.html">
+                <!-- <a href="page-auth-forgot-password-v1.html">
                     <small>Forgot Password?</small>
-                </a>
+                </a> -->
             </div>
             <div class="input-group input-group-merge form-password-toggle">
                 <input type="password" class="form-control form-control-merge" id="login-password"

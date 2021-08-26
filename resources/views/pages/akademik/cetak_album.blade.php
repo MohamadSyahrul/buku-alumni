@@ -60,7 +60,7 @@
       @else
       <tr>
         @if($mahasiswas->foto == null)
-        <td style="margin-left: 1em;padding-bottom: 2em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswas->foto) }}" style="max-width: 230px; max-height: 150px;"> 
+        <td style="margin-left: 1em;padding-bottom: 2em;">  <img src="{{ ('Poliwangi_Logo.png') }}" style="max-width: 230px; max-height: 150px;"> 
         </td>
         @else
         <td style="margin-left: 1em;padding-bottom: 2em;">  <img src="{{ ('Foto-Mahasiswa/'.$mahasiswas->foto) }}" style="max-width: 230px; max-height: 150px;"> 
