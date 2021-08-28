@@ -24,6 +24,8 @@ class APIUuserController extends Controller
         $response = $client->request('GET', 'https://jpc.poliwangi.ac.id/Api/Alumni/list/', ['verify' => false]);
         $response = json_decode($response->getBody());
         set_time_limit(600);
+
+
         // foreach ($response->data as $provinsi) {
         //    User::insert([
         //         'id' => $provinsi->id,
@@ -43,6 +45,8 @@ class APIUuserController extends Controller
         //         'telepon' => $provinsi->telp,
         //     ]);
         // }
+
+        
         dd($response->data);
     }
 

@@ -60,7 +60,7 @@ Poliwangi - User Akademik <?php echo date("M Y"); ?>
                                                         class="btn btn-icon btn-success mb-1">
                                                         <i data-feather="edit" title="Edit"></i>
                                                     </a>
-                                                    <form method="POST"
+<!--                                                     <form method="POST"
                                                         action="{{ route('user-Admin.destroy', $mahasiswa->id)}}"
                                                         onclick="deleteData('{{$mahasiswa->id}}', this)">
                                                         @csrf
@@ -69,7 +69,7 @@ Poliwangi - User Akademik <?php echo date("M Y"); ?>
                                                            
                                                                 Delete
                                                         </button>
-                                                    </form>
+                                                    </form> -->
                                                 </td>
                                             </tr>
                                             @endforeach

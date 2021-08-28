@@ -156,6 +156,8 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->file('foto')) {
+        
         $file = $request->file('foto');
         $filename = $request->input('nim').'-'.$file->getClientOriginalName();
         $file_formatted = str_replace(' ', '_', $filename);
@@ -198,6 +200,28 @@ class ProfileController extends Controller
  //     $data
 
  // );
+        }
+        else{
+            
+       ProfilMahasiswa::where('id', $id)->update([
+        'nim' => $request->input('nim'),
+        'nama' => $request->input('nama'),
+        'tempat_lahir' => $request->input('tempat_lahir'),
+        'tanggal_lahir' => $request->input('tanggal_lahir'),
+        'jenis_kelamin' => $request->input('jenis_kelamin'),
+        'prodi' => $request->input('prodi'),
+        'alamat' => $request->input('alamat'),    
+        'lama_studi' => $request->input('lama_studi'),    
+        'judul_laporan' => $request->input('judul_laporan'),    
+        'sosmed' => $request->input('sosmed'),    
+        'angkatan' => $request->input('angkatan'),
+        'telepon' => $request->input('telepon'),
+        'ipk' => $request->input('ipk'),
+        // 'foto' => $file_formatted,
+        'pekerjaan' => $request->input('pekerjaan'),
+        'user_id' => Auth::user()->id,
+         ]);
+        }
 
     return redirect('profile');
     }

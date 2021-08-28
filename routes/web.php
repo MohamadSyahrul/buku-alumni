@@ -67,6 +67,8 @@ Route::resource('detail-alumni_mahasiswa', DetailAlumniController::class)->only(
 
 Route::get('change-password', [AkademikProfileController::class, 'index'])->name('change-password')->middleware(['auth']);
 Route::patch('update-password', [AkademikProfileController::class, 'updateUser'])->name('update-user')->middleware(['auth']);
+Route::get('update-user_profil/{id}', [AkademikProfileController::class, 'show'])->name('show')->middleware(['auth']);
+Route::post('update-user_profil_store/{id}', [AkademikProfileController::class, 'store'])->name('store')->middleware(['auth']);
 
 
 Route::resource('user-Admin', AdminController::class)->middleware(['auth']);

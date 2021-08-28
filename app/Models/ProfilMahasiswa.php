@@ -25,6 +25,7 @@ class ProfilMahasiswa extends Model
         'judul_laporan',
         'sosmed',
         'angkatan',
+        'tahun_lulus',
         'telepon',
         'ipk',
         'foto',

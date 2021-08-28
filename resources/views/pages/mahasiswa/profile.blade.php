@@ -34,180 +34,184 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
     @else
     <section id="profile-info">
         <div class="row">
-        <!-- left profile info section -->
+            <!-- left profile info section -->
             <div class="col-lg-12 col-12 order-2 order-lg-1">
-            <!-- about -->
+                <!-- about -->
                 <div class="card">
-                     <div class="card-body">
+                 <div class="card-body">
 
-                        <h2 class="content-header-title float-left mb-0"> {{ $mahasiswau->nama }}, Mohon Konfirmasi Ke Pihak Akademik Untuk Validasi Akun Anda</h2>
+                    <h2 class="content-header-title float-left mb-0"> {{ $mahasiswau->nama }}, Mohon Konfirmasi Ke Pihak Akademik Untuk Validasi Akun Anda</h2>
 
-                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    @endif
-    @endforeach
-                        @else
-    <div class="content-header row">
-        <div class="content-header-left col-md-9 col-12 mb-2">
-            <div class="row breadcrumbs-top">
-                <div class="col-12">
-                    <h2 class="content-header-title float-left mb-0">Profile</h2>
+    </div>
+</section>
+@endif
+@endforeach
+@else
+<div class="content-header row">
+    <div class="content-header-left col-md-9 col-12 mb-2">
+        <div class="row breadcrumbs-top">
+            <div class="col-12">
+                <h2 class="content-header-title float-left mb-0">Profile</h2>
 
-                    <!-- add button -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahData">
-                        <i data-feather="edit" class="d-block d-md-none" ></i>
-                        <span class="font-weight-bold d-none d-md-block">Tambah</span>
+                <!-- add button -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahData">
+                    <i data-feather="edit" class="d-block d-md-none" ></i>
+                    <span class="font-weight-bold d-none d-md-block">Tambah</span>
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@endif
+@foreach($mahasiswa as $mahasiswa)
+@if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id == $mahasiswa->user_detail->id)
+
+<div class="content-body">
+    <div id="user-profile">
+        <!-- profile header -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card profile-header mb-2">
+
+                    <!-- profile cover photo -->
+                    <img class="card-img-top"
+                    src="{{asset('admin/app-assets/images/profile/user-uploads/timeline.jpg')}}"
+                    alt="User Profile Image" />
+                    <!--/ profile cover photo -->
+
+                    <div class="position-relative">
+                        <!-- profile picture -->
+                        <div class="profile-img-container d-flex align-items-center">
+                            <div class="profile-img">
+                                <img src="{{ asset('Foto-Mahasiswa/'.$mahasiswa->foto) }}" class="rounded img-fluid"
+                                alt="Card image" />
+                            </div>
+                            <!-- profile title -->
+                            <div class="profile-title ml-3">
+                                <h2 class="text-white">{{$mahasiswa->nama}}</h2>
+                                <p class="text-white">{{$mahasiswa->nim}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- tabs pill -->
+                    <div class="profile-header-nav">
+                        <!-- navbar -->
+                        <nav
+                        class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
+                        <button class="btn btn-icon navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i data-feather="align-justify" class="font-medium-5"></i>
                     </button>
 
-                </div>
+                    <!-- collapse  -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
+
+                        </div>
+                    </div>
+                    <!--/ collapse  -->
+                </nav>
+                <!--/ navbar -->
             </div>
         </div>
     </div>
+</div>
+<!--/ profile header -->
+<!-- profile info section -->
+<section id="profile-info">
+    <div class="row">
+        <!-- left profile info section -->
+        <div class="col-lg-6 col-12 order-2 order-lg-1">
+            <!-- about -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-75">Tempat Lahir</h5>
+                    <p class="card-text">
+                        {{$mahasiswa->tempat_lahir}}
+                    </p>
+                    <div class="mt-2">
+                        <h5 class="mb-75">Tanggal Lahir</h5>
+                        <p class="card-text">
+                            {{Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->translatedFormat('d F Y')}}
+                        </p>
+                    </div>
+                    <div class="mt-2">
+                        <h5 class="mb-75">Jenis Kelamin</h5>
+                        <p class="card-text">{{$mahasiswa->jenis_kelamin}}</p>
+                    </div>
+                    <div class="mt-2">
+                        <h5 class="mb-75">Prodi</h5>
+                        <p class="card-text">{{$mahasiswa->prodi}}</p>
+                    </div>
+                    <div class="mt-2">
+                        <h5 class="mb-50">Alamat</h5>
+                        <p class="card-text mb-0">{{$mahasiswa->alamat}}</p>
+                    </div>
+                </div>
+            </div>
+            <!--/ about -->
 
-               
+        </div>
+        <!--/ left profile info section -->
+        <div class="col-lg-6 col-12 order-2 order-lg-1">
+            <!-- about -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-75">Lama Studi</h5>
+                    <p class="card-text">
+                        {{$mahasiswa->lama_studi}}
+                    </p>
+                    <div class="mt-2">
+                        <h5 class="mb-75">Judul Laporan</h5>
+                        <p class="card-text">{{$mahasiswa->judul_laporan}}</p>
+                    </div>
+                    <div class="mt-2">
+                        <h5 class="mb-75">Sosmed</h5>
+                        <p class="card-text">{{$mahasiswa->sosmed}}</p>
+                    </div>
+                    <div class="mt-2">
+                        <h5 class="mb-75">Tahun Lulus</h5>
+                        <p class="card-text">{{$mahasiswa->tahun_lulus}}</p>
+                    </div>
+                    @if($mahasiswa->ipk != '')
+                    <div class="mt-2">
+                        <h5 class="mb-75">IPK</h5>
+                        <p class="card-text">{{$mahasiswa->ipk}}</p>
+                    </div>
+                    @else
+                    <div class="mt-2">
+                        <h5 class="mb-50">IPK</h5>
+                        <p class="card-text mb-0"> - </p>
+                    </div>
                     @endif
-    @foreach($mahasiswa as $mahasiswa)
-    @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id == $mahasiswa->user_detail->id)
-
-    <div class="content-body">
-        <div id="user-profile">
-            <!-- profile header -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="card profile-header mb-2">
-
-                        <!-- profile cover photo -->
-                        <img class="card-img-top"
-                            src="{{asset('admin/app-assets/images/profile/user-uploads/timeline.jpg')}}"
-                            alt="User Profile Image" />
-                        <!--/ profile cover photo -->
-
-                        <div class="position-relative">
-                            <!-- profile picture -->
-                            <div class="profile-img-container d-flex align-items-center">
-                                <div class="profile-img">
-                                    <img src="{{ asset('Foto-Mahasiswa/'.$mahasiswa->foto) }}" class="rounded img-fluid"
-                                        alt="Card image" />
-                                </div>
-                                <!-- profile title -->
-                                <div class="profile-title ml-3">
-                                    <h2 class="text-white">{{$mahasiswa->nama}}</h2>
-                                    <p class="text-white">{{$mahasiswa->nim}}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- tabs pill -->
-                        <div class="profile-header-nav">
-                            <!-- navbar -->
-                            <nav
-                                class="navbar navbar-expand-md navbar-light justify-content-end justify-content-md-between w-100">
-                                <button class="btn btn-icon navbar-toggler" type="button" data-toggle="collapse"
-                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                    <i data-feather="align-justify" class="font-medium-5"></i>
-                                </button>
-
-                                <!-- collapse  -->
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
-
-                                    </div>
-                                </div>
-                                <!--/ collapse  -->
-                            </nav>
-                            <!--/ navbar -->
-                        </div>
+                    <div class="mt-2">
+                        <h5 class="mb-50">Angkatan Wisuda</h5>
+                        <p class="card-text mb-0"> {{$mahasiswa->angkatan}} </p>
                     </div>
                 </div>
             </div>
-            <!--/ profile header -->
-            <!-- profile info section -->
-            <section id="profile-info">
-                <div class="row">
-                    <!-- left profile info section -->
-                    <div class="col-lg-6 col-12 order-2 order-lg-1">
-                        <!-- about -->
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="mb-75">Tempat Lahir</h5>
-                                <p class="card-text">
-                                    {{$mahasiswa->tempat_lahir}}
-                                </p>
-                                <div class="mt-2">
-                                    <h5 class="mb-75">Tanggal Lahir</h5>
-                                    <p class="card-text">
-                                        {{Carbon\Carbon::parse($mahasiswa->tanggal_lahir)->translatedFormat('d F Y')}}
-                                    </p>
-                                </div>
-                                <div class="mt-2">
-                                    <h5 class="mb-75">Jenis Kelamin</h5>
-                                    <p class="card-text">{{$mahasiswa->jenis_kelamin}}</p>
-                                </div>
-                                <div class="mt-2">
-                                    <h5 class="mb-75">Prodi</h5>
-                                    <p class="card-text">{{$mahasiswa->prodi}}</p>
-                                </div>
-                                <div class="mt-2">
-                                    <h5 class="mb-50">Alamat</h5>
-                                    <p class="card-text mb-0">{{$mahasiswa->alamat}}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ about -->
+            <!--/ about -->
 
-                    </div>
-                    <!--/ left profile info section -->
-                    <div class="col-lg-6 col-12 order-2 order-lg-1">
-                        <!-- about -->
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="mb-75">Lama Studi</h5>
-                                <p class="card-text">
-                                    {{$mahasiswa->lama_studi}}
-                                </p>
-                                <div class="mt-2">
-                                    <h5 class="mb-75">Judul Laporan</h5>
-                                    <p class="card-text">{{$mahasiswa->judul_laporan}}</p>
-                                </div>
-                                <div class="mt-2">
-                                    <h5 class="mb-75">Sosmed</h5>
-                                    <p class="card-text">{{$mahasiswa->sosmed}}</p>
-                                </div>
-                                @if($mahasiswa->ipk != '')
-                                <div class="mt-2">
-                                    <h5 class="mb-75">IPK</h5>
-                                    <p class="card-text">{{$mahasiswa->ipk}}</p>
-                                </div>
-                                @else
-                                <div class="mt-2">
-                                    <h5 class="mb-50">IPK</h5>
-                                    <p class="card-text mb-0"> - </p>
-                                </div>
-                                @endif
-                                <div class="mt-2">
-                                    <h5 class="mb-50">Angkatan</h5>
-                                    <p class="card-text mb-0"> {{$mahasiswa->angkatan}} </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ about -->
-
-                    </div>
-                </div>
-
-            </section>
-            @else
-            @endif
-            <!--/ profile info section -->
         </div>
-
     </div>
 
-    @endforeach
+</section>
+@else
+@endif
+<!--/ profile info section -->
+</div>
+
+</div>
+
+@endforeach
 </div>
 
 <!-- modal -->
@@ -247,7 +251,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" value="{{$mahasiswa->tempat_lahir}}"
-                                name="tempat_lahir">
+                            name="tempat_lahir">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -256,7 +260,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </div>
                         <div class="col-lg-8">
                             <input type="date" class="form-control" value="{{$mahasiswa->tanggal_lahir}}"
-                                name="tanggal_lahir">
+                            name="tanggal_lahir">
                         </div>
                     </div>
 
@@ -305,7 +309,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" value="{{$mahasiswa->lama_studi}}" name="lama_studi"
-                                placeholder="Contoh 3 Tahun 8 Bulan ">
+                            placeholder="Contoh 3 Tahun 8 Bulan ">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -314,7 +318,18 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" value="{{$mahasiswa->judul_laporan}}"
-                                name="judul_laporan">
+                            name="judul_laporan">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <div class="col-lg-3">
+                                <label class="col-form-label">Tahun
+                                Lulus</label>
+                            </div>
+                            <div class="col-lg-8">
+                                <input type="text" name="tahun_lulus" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -348,12 +363,12 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         <div class="col-lg-8">
                             <select name="angkatan" class="form-control" value="{{$mahasiswa->angkatan}}">
                                 @if(count(array($album)) <1) <option disabled value=""> BELUM ADA
-                                    ALBUM </option>
-                                    @else
-                                    @foreach($album as $key => $PA)
-                                    <option value="{{$PA->angkatan}}"> {{$PA->angkatan}} </option>
-                                    @endforeach
-                                    @endif
+                                ALBUM </option>
+                                @else
+                                @foreach($album as $key => $PA)
+                                <option value="{{$PA->angkatan}}"> {{$PA->angkatan}} </option>
+                                @endforeach
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -371,12 +386,12 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                         <button type="submit" class="btn btn-primary">Ubah</button>
                     </div>
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-@else
-<div class="modal fade" id="TambahData" tabindex="-1" role="dialog" aria-labelledby="TambahDataLabel"
+    @else
+    <div class="modal fade" id="TambahData" tabindex="-1" role="dialog" aria-labelledby="TambahDataLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -415,154 +430,154 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                                         <select name="nama" class="form-control">
                                                             <option value="{{$data_user->name}}">
                                                                 {{$data_user->name}} </option>
-                                                        </select>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Tempat
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Tempat
                                                             Lahir</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" name="tempat_lahir">
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" class="form-control" name="tempat_lahir">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Tanggal
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Tanggal
                                                             Lahir</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="date" class="form-control" name="tanggal_lahir">
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="date" class="form-control" name="tanggal_lahir">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Jenis
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Jenis
                                                             Kelamin</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <select name="jenis_kelamin" class="form-control">
-                                                            <option value="laki-laki">laki-laki
-                                                            </option>
-                                                            <option value="perempuan">perempuan
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Prodi</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <select name="prodi" class="form-control">
-                                                            @foreach($prodi as $key => $PA)
-                                                            <option value="{{$PA->nama_prodi}}">
-                                                                {{$PA->nama_prodi}}
-                                                            </option>
-                                                            @endforeach
-                                                        </select>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <select name="jenis_kelamin" class="form-control">
+                                                                <option value="laki-laki">laki-laki
+                                                                </option>
+                                                                <option value="perempuan">perempuan
+                                                                </option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Alamat</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" name="alamat">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Telepon/HP</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" name="telepon">
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Prodi</label>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <select name="prodi" class="form-control">
+                                                                @foreach($prodi as $key => $PA)
+                                                                <option value="{{$PA->nama_prodi}}">
+                                                                    {{$PA->nama_prodi}}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Lama
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Alamat</label>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" class="form-control" name="alamat">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Telepon/HP</label>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" class="form-control" name="telepon">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Lama
                                                             Studi</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" name="lama_studi"
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" class="form-control" name="lama_studi"
                                                             placeholder="Contoh 3 Tahun 8 Bulan ">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Judul
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Judul
                                                             Laporan</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" class="form-control" name="judul_laporan">
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" class="form-control" name="judul_laporan">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Tahun
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Tahun
                                                             Lulus</label>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="tahun_lulus" class="form-control">
+                                                        </div>
                                                     </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="text" name="tahun_lulus" class="form-control">
-                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-lg-3">
-                                                    <label class="col-form-label">Sosmed</label>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="sosmed" value="" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-lg-3">
-                                                    <label class="col-form-label">Pekerjaan</label>
-                                                </div>
-                                                <div class="col-lg-8">
-                                                    <input type="text" name="pekerjaan" value="" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
-                                                        <label class="col-form-label">IPK</label>
+                                                        <label class="col-form-label">Sosmed</label>
                                                     </div>
                                                     <div class="col-lg-8">
-                                                        <input type="text" name="ipk" class="form-control">
+                                                        <input type="text" name="sosmed" value="" class="form-control">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
                                                 <div class="form-group row">
                                                     <div class="col-lg-3">
-                                                        <label class="col-form-label">Angkatan
+                                                        <label class="col-form-label">Pekerjaan</label>
+                                                    </div>
+                                                    <div class="col-lg-8">
+                                                        <input type="text" name="pekerjaan" value="" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">IPK</label>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="text" name="ipk" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Angkatan
                                                             Wisuda</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <select name="angkatan" class="form-control">
-                                                            @if(count(array($album)) <1) <option disabled value="">
-                                                                BELUM ADA
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <select name="angkatan" class="form-control">
+                                                                @if(count(array($album)) <1) <option disabled value="">
+                                                                    BELUM ADA
                                                                 ALBUM </option>
                                                                 @else
                                                                 @foreach($album as $key => $PA)
@@ -571,17 +586,18 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                                                 </option>
                                                                 @endforeach
                                                                 @endif
-                                                        </select>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group row">
-                                                    <div class="col-lg-3">
-                                                        <label class="col-form-label">Foto</label>
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <input type="file" class="form-control" name="foto">
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-3">
+                                                            <label class="col-form-label">Foto</label>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <input type="file" class="form-control" name="foto">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -589,24 +605,23 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Batal
-                    </button>
-                    <button type="submit" class="btn btn-primary">Ubah</button>
-                </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
+                    </div>
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-@endif
+    @endif
 
-<!-- modal -->
+    <!-- modal -->
 
-@endsection
-@push('plugin-script')
-<script src="{{asset('admin/app-assets/js/scripts/pages/page-profile.js')}}"></script>
-@endpush
+    @endsection
+    @push('plugin-script')
+    <script src="{{asset('admin/app-assets/js/scripts/pages/page-profile.js')}}"></script>
+    @endpush

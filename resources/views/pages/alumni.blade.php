@@ -76,7 +76,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                 <td>
                                                     @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id
                                                     ==
-                                                    $mahasiswa->user_detail->id)
+                                                    Auth::user()->id)
                                                     <button class="btn btn-success">
                                                         <i data-feather="check"></i>
                                                     </button>
@@ -89,7 +89,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                 </td>
                                                 {{-- modal --}}
                                                 <td>
-                                                    <a href="{{ route('profile.show',$mahasiswa->id) }}"
+                                                    <a href="{{ url('update-user_profil',$mahasiswa->id) }}"
                                                         class="btn btn-primary" title="Edit">
                                                         <i data-feather="edit"></i>
                                                     </a> 

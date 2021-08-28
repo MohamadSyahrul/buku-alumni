@@ -94,6 +94,8 @@ class AdminController extends Controller
             'name' => $data['name'],
             'nim' => $data['nim'],
             'password' => Hash::make($data['password']),
+            'role_id' => 'akademik'
+            
             // 'role_id' => 'mahasiswa'
         ]);   
 

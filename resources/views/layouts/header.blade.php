@@ -12,12 +12,12 @@
                         <img class="round" src="{{asset('admin/app-assets/images/portrait/small/avatar-s-11.jpg')}}"
                             alt="avatar" height="40" width="40">
                         @else
-                        {{-- <img --}}
-                        {{-- class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" --}}
-                        {{-- alt="avatar" height="40" width="40"> --}}
+                        <img 
+                        class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" 
+                        alt="avatar" height="40" width="40"> 
                         @endif
 
-                        <span class="avatar-status-online"></span></span>
+                        <!-- <span class="avatar-status-online"></span></span> -->
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-user">
                     <form method="POST" action="{{ route('logout') }}">

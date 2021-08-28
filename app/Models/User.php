@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nim',
         'role_id',
         'hapus',
     ];
@@ -46,5 +47,8 @@ class User extends Authenticatable
 
       public function profil() {
         return $this->hasMany(ProfilMahasiswa::class, 'user_id', 'id');
+    }
+       public function profil_foto() {
+        return $this->hasOne(ProfilMahasiswa::class, 'user_id', 'id');
     }
 }
