@@ -11,7 +11,7 @@
                             class="user-status">{{Auth::user()->email}}</span></div><span class="avatar">
                               @if(Auth::user()->role_id == "mahasiswa" && Auth::user()->profil_foto != null)
                         <img 
-                        class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" 
+                        class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil_foto->foto)}}" 
                         alt="avatar" height="40" width="40">
                         @else
                         <img class="round" src="{{asset('Poliwangi_Logo.png') }}"
