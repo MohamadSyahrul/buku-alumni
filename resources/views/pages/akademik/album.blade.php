@@ -60,7 +60,7 @@ Poliwangi - Album <?php echo date("M Y"); ?>
                                                 <td><img src="{{ asset('/Akademik-Album-Header/'.$album->header_album) }}"
                                                         style=";max-height: 50px;max-width: 50px;"></td>
                                                 <td>{{$album->nama_album}}</td>
-                                                <td>{{$album->tahun_terbit}}</td>
+                                                <td>{{$album->angkatan}}</td>
                                                 <td>
                                                     <a href="{{ url('detail-album-alumni',$album->angkatan) }}"  class="btn btn-info mb-1">
                                                        

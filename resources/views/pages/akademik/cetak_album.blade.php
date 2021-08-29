@@ -30,7 +30,11 @@
 <img src="{{ ('Akademik-Album/'. $album->gambar_album) }}" alt="" width="100%"/ style="padding-bottom: 10em; padding-top: 10em">
  @foreach($prodi as $prodis)
   <!-- <table width="100%" style="background-color: #7367F0"> -->
+  @if($album->header_album != null)
   <table width="100%" style="background-image: url('{{ ('Akademik-Album-Header/'. $album->header_album) }} ');">
+    @else
+  <table width="100%" style="background-image:  url('{{ ('1630190887.Desert.jpg') }} ');">
+    @endif
     <tr>
         
             <td align="left" width="30%"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/> </td>
