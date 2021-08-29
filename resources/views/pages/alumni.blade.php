@@ -74,9 +74,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    @if($mahasiswa->status != 'Belum Tervalidasi' && $mahasiswa->user_id
-                                                    ==
-                                                    Auth::user()->id)
+                                                    @if($mahasiswa->status != 'Belum Tervalidasi')
                                                     <button class="btn btn-success">
                                                         <i data-feather="check"></i>
                                                     </button>
