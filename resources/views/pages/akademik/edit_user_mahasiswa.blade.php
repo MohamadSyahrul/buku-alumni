@@ -4,7 +4,7 @@ window.onload = function(){
 </script>
 
 
-@extends('layouts.master')
+@extends('template.master')
 @section('title')
 Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 @endsection

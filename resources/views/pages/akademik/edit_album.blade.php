@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('template.master')
 @section('title')
 Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
 @endsection
