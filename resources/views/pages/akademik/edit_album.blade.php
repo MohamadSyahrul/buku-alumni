@@ -14,7 +14,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                 <div class="col-md-12 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Edit Prodi</h4>
+                            <h4 class="card-title">Edit Album</h4>
                         </div>
                         <div class="card-body">
                             <form class="form form-horizontal" action="{{ route('album-akademik.update' , $album->id)}}"
