@@ -53,6 +53,7 @@ class AlbumController extends Controller
             'gambar_album' => $file_formatted,
             // 'header_album' => $file_formatted2,
         ]);
+    }
          if ($request->file('gambar_album')) {
         //header album
         $file2 = $request->file('header_album');
@@ -146,6 +147,7 @@ class AlbumController extends Controller
         // 'gambar_album' => $file_formatted,
         'header_album' => $file_formatted2,
     ]);
+     }
      else
      {
         AlbumAlumni::where('id', $id)->update([

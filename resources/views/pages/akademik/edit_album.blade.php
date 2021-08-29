@@ -50,6 +50,14 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                                                 <input type="file" class="form-control" name="gambar_album">
                                             </div>
                                         </div>
+                                                           <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Header Album</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="file" class="form-control" name="header_album">
+                        </div>
+                    </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">Batal
