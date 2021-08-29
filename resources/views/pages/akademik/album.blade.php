@@ -42,6 +42,7 @@ Poliwangi - Album <?php echo date("M Y"); ?>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Gambar</th>
+                                                <th>Header</th>
                                                 <th>Nama Album</th>
                                                 <th>Tahun</th>
                                                 <th>Detail Album</th>
@@ -55,6 +56,8 @@ Poliwangi - Album <?php echo date("M Y"); ?>
 
                                                 <td>{{$key+1}}</td>
                                                 <td><img src="{{ asset('/Akademik-Album/'.$album->gambar_album) }}"
+                                                        style=";max-height: 50px;max-width: 50px;"></td>
+                                                <td><img src="{{ asset('/Akademik-Album-Header/'.$album->header_album) }}"
                                                         style=";max-height: 50px;max-width: 50px;"></td>
                                                 <td>{{$album->nama_album}}</td>
                                                 <td>{{$album->tahun_terbit}}</td>
@@ -128,26 +131,34 @@ Poliwangi - Album <?php echo date("M Y"); ?>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-3">
-                            <label class="col-form-label">Angkatan</label>
+                            <label class="col-form-label">Angkatan Wisuda</label>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" name="angkatan">
                         </div>
                     </div>
-                    <div class="form-group row">
+<!--                     <div class="form-group row">
                         <div class="col-lg-3">
                             <label class="col-form-label">Tahun Terbit</label>
                         </div>
                         <div class="col-lg-8">
                             <input type="text" class="form-control" name="tahun_terbit">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row">
                         <div class="col-lg-3">
                             <label class="col-form-label">Gambar Album</label>
                         </div>
                         <div class="col-lg-8">
                             <input type="file" class="form-control" name="gambar_album">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-3">
+                            <label class="col-form-label">Header Album</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <input type="file" class="form-control" name="header_album">
                         </div>
                     </div>
                     <div class="modal-footer">

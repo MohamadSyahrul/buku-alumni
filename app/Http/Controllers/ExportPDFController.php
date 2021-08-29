@@ -20,7 +20,7 @@ class ExportPDFController extends Controller
 
        $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
         $q->where('role_id', 'mahasiswa');
-    }])->where('angkatan', $id)->get();
+    }])->where('angkatan', $id)->limit(25)->get();
        // dd($Pm);
        $album = AlbumAlumni::where('hapus', 0)->where('angkatan', $id)->first();
        $prodi = ProdiAlumni::where('hapus', 0)->get();

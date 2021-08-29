@@ -29,7 +29,8 @@
 <body>
 <img src="{{ ('Akademik-Album/'. $album->gambar_album) }}" alt="" width="100%"/ style="padding-bottom: 10em; padding-top: 10em">
  @foreach($prodi as $prodis)
-  <table width="100%" style="background-color: #7367F0">
+  <!-- <table width="100%" style="background-color: #7367F0"> -->
+  <table width="100%" style="background-image: url('{{ ('Akademik-Album-Header/'. $album->header_album) }} ');">
     <tr>
         
             <td align="left" width="30%"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/> </td>

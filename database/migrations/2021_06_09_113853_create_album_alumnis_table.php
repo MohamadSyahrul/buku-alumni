@@ -18,6 +18,7 @@ class CreateAlbumAlumnisTable extends Migration
             $table->string('nama_album');
             $table->string('angkatan');
             $table->string('gambar_album');
+            $table->string('header_album');
             $table->string('tahun_terbit');
             $table->integer('hapus')->default(0);
             $table->timestamps();
