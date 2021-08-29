@@ -14,7 +14,7 @@
                         class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" 
                         alt="avatar" height="40" width="40">
                         @else
-                        <img class="round" src="{{ ('Poliwangi_Logo.png') }}"
+                        <img class="round" src="{{asset('Poliwangi_Logo.png') }}"
                             alt="avatar" height="40" width="40">
                         @endif     
                             
