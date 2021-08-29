@@ -27,7 +27,13 @@
 
 
 <body>
+  @if($album->gambar_album != null)
+
 <img src="{{ ('Akademik-Album/'. $album->gambar_album) }}" alt="" width="100%"/ style="padding-bottom: 10em; padding-top: 10em">
+@else
+<img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="100%"/ style="padding-bottom: 10em; padding-top: 10em">
+    @endif
+
  @foreach($prodi as $prodis)
   <!-- <table width="100%" style="background-color: #7367F0"> -->
   @if($album->header_album != null)
