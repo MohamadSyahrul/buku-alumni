@@ -9,17 +9,14 @@
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name font-weight-bolder">{{Auth::user()->name}}</span><span
                             class="user-status">{{Auth::user()->email}}</span></div><span class="avatar">
-                                
-
-                          @if(Auth()->user()->profil_foto != null)
+                              @if(Auth::user()->role_id == "mahasiswa" && Auth::user()->profil_foto != null)
                         <img 
-                        class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil_foto->foto)}}" 
+                        class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" 
                         alt="avatar" height="40" width="40">
                         @else
-                        <img 
-                        class="round" src="{{asset('admin/app-assets/images/ico/logo.png')}}" 
-                        alt="avatar" height="40" width="40">
-                        @endif
+                        <img class="round" src="{{asset('admin/app-assets/images/portrait/small/avatar-s-11.jpg')}}"
+                            alt="avatar" height="40" width="40">
+                        @endif     
                             
                             <span class="avatar-status-online"></span></span>
                 </a>

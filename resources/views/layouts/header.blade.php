@@ -8,7 +8,7 @@
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name font-weight-bolder">{{Auth::user()->name}}</span><span
                             class="user-status">{{Auth::user()->email}}</span></div><span class="avatar">
-                        @if(Auth::user()->role_id == "mahasiswa")
+                        @if(Auth::user()->role_id == "mahasiswa" && Auth::user()->profil_foto != null)
                         <img 
                         class="round" src="{{asset('Foto-Mahasiswa/'. Auth()->user()->profil->foto)}}" 
                         alt="avatar" height="40" width="40">
