@@ -1,4 +1,4 @@
-@extends('template.master')
+\\@extends('template.master')
 @section('title')
 Poliwangi - Alumni <?php echo date("M Y"); ?>
 @endsection

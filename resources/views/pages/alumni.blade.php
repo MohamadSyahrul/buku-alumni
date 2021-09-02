@@ -39,6 +39,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                         <thead>
                                             <tr>
                                                 <th>No</th>
+                                                <th>Foto</th>
                                                 <th>NIM</th>
                                                 <th>Mahasiswa</th>
                                                 <th>Jurusan</th>
@@ -46,7 +47,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                 @if(Auth::user()->role_id=="mahasiswa")
                                                 <th> Sosmed </th>
                                                 <th> Telepon </th>
-                                                <th> IPK </th>
+                                                <!-- <th> IPK </th> -->
                                                 @else
                                                 <!-- <th>IPK</th> -->
                                                 <th colspan="3" class="text-center">Action</th>
@@ -57,7 +58,11 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                             @foreach($mahasiswa as $key=> $mahasiswa)
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
-                                                <!--    <td><img src="{{ asset('/Akademik-Album/'.$mahasiswa->gambar_album) }}" style=";max-height: 50px;max-width: 50px;"></td> -->
+                                                @if($mahasiswa->foto != null)
+                                                   <td><img src="{{ asset('/Foto-Mahasiswa/'.$mahasiswa->foto) }}" style=";max-height: 50px;max-width: 50px;"></td>
+                                                @else
+                                                    <td><img src="{{ asset('Poliwangi_Logo.png') }}" style=";max-height: 50px;max-width: 50px;"></td>
+                                                @endif
                                                 <td>{{$mahasiswa->nim}}</td>
                                                 <td>{{$mahasiswa->nama}}</td>
                                                 <td>{{$mahasiswa->prodi}}</td>
@@ -65,7 +70,7 @@ Poliwangi - Alumni <?php echo date("M Y"); ?>
                                                 @if(Auth::user()->role_id=="mahasiswa")
                                                 <td> {{$mahasiswa->sosmed}} </td>
                                                 <td> {{$mahasiswa->telepon}} </td>
-                                                <td> {{$mahasiswa->ipk}} </td>
+                                                <!-- <td> {{$mahasiswa->ipk}} </td> -->
                                                 @else
                                                 <td>
                                                     <a href="{{ url('detail-alumni_mahasiswa',$mahasiswa->user_id) }}"
