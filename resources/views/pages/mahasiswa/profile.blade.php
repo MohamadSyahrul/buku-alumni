@@ -234,7 +234,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">NIM</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" value="{{$mahasiswa->nim}}" name="nim">
+                            <input type="text" class="form-control" readonly value="{{$mahasiswa->nim}}" name="nim">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -242,7 +242,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">Nama</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" value="{{$mahasiswa->nama}}" name="nama">
+                            <input type="text" class="form-control" readonly value="{{$mahasiswa->nama}}" name="nama">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -250,7 +250,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">Tempat Lahir</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" value="{{$mahasiswa->tempat_lahir}}"
+                            <input type="text" class="form-control"  value="{{$mahasiswa->tempat_lahir}}"
                             name="tempat_lahir">
                         </div>
                     </div>
@@ -259,7 +259,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">Tanggal Lahir</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="date" class="form-control" value="{{$mahasiswa->tanggal_lahir}}"
+                            <input type="date" class="form-control"  value="{{$mahasiswa->tanggal_lahir}}"
                             name="tanggal_lahir">
                         </div>
                     </div>
@@ -280,9 +280,9 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">Prodi</label>
                         </div>
                         <div class="col-lg-8">
-                            <select name="prodi" class="form-control" value="{{$mahasiswa->nama_prodi}}">
+                            <select name="prodi" class="form-control" disabled >
                                 @foreach($prodi as $key => $PA)
-                                <option value="{{$PA->nama_prodi}}"> {{$PA->nama_prodi}} </option>
+                                <option value="{{$mahasiswa->prodi}}"> {{$mahasiswa->prodi}} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -300,7 +300,7 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">Telepon/HP</label>
                         </div>
                         <div class="col-lg-8">
-                            <input type="text" class="form-control" value="{{$mahasiswa->telepon}}" name="telepon">
+                            <input type="text" class="form-control" readonly value="{{$mahasiswa->telepon}}" name="telepon">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -361,12 +361,12 @@ Poliwangi - Buku Alumni <?php echo date("M Y"); ?>
                             <label class="col-form-label">Angkatan Wisuda</label>
                         </div>
                         <div class="col-lg-8">
-                            <select name="angkatan" class="form-control" value="{{$mahasiswa->angkatan}}">
+                            <select disabled name="angkatan" class="form-control" >
                                 @if(count(array($album)) <1) <option disabled value=""> BELUM ADA
                                 ALBUM </option>
                                 @else
                                 @foreach($album as $key => $PA)
-                                <option value="{{$PA->angkatan}}"> {{$PA->angkatan}} </option>
+                                <option value="{{$mahasiswa->angkatan}}"> {{$mahasiswa->angkatan}} </option>
                                 @endforeach
                                 @endif
                             </select>

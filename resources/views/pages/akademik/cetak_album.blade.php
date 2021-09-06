@@ -35,34 +35,23 @@
     @endif
 
  @foreach($prodi as $prodis)
-  <!-- <table width="100%" style="background-color: #7367F0"> -->
   @if($album->header_album != null)
-  <table width="100%" style="background-image: url('{{ ('Akademik-Album-Header/'. $album->header_album) }} ');">
+  <table width="100%" style="background-image: url('{{ ('Akademik-Album-Header/'. $album->header_album) }} '); margin-bottom: -1em">
     @else
-  <table width="100%" style="background-image:  url('{{ ('1630190887.Desert.jpg') }} ');">
+  <table width="100%" style="background-image:  url('{{ ('1630190887.Desert.jpg') }} '); margin-bottom: -1em">
     @endif
     <tr>
         
             <td align="left" width="30%"><img src="{{ ('Poliwangi_Logo.png') }}" alt="" width="150"/> </td>
             <td width="70%"><h2>{{$prodis->nama_prodi}}</h2></td>
-        </div>
+       
     </tr>
 
   </table>
-
-  <table width="100%">
-    <tr>
-      <!--  -->
-    </tr>
-
-  </table>
-
-  <br/>
   
   <table width="100%" style="text-transform: uppercase;" >
     
     <tbody >
-      <?php $number=1;?>
       @if($mahasiswa->count() >= 1)
 
       @foreach($mahasiswa as $mahasiswas)
@@ -92,20 +81,19 @@
 
         </tr>
 
-        <?php $number++;?>
-        
         @endif         
         @endforeach
         @else
-
         @endif
       </tbody>
 
       
     </table>
-    <div style="page-break-after: always;"></div>
 
   </body>
+
+    <div style="page-break-after: always;"></div>
+
 @endforeach
 
   </html>
