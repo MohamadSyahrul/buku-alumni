@@ -21,44 +21,25 @@ class ExportPDFController extends Controller
        $Pm =  ProfilMahasiswa::with(['user_detail' => function($q) use($request) {
         $q->where('role_id', 'mahasiswa');
     }])->where('angkatan', $id)->limit(25)->get();
-       // dd($Pm);
        $album = AlbumAlumni::where('hapus', 0)->where('angkatan', $id)->first();
        $prodi = ProdiAlumni::where('hapus', 0)->get();
- // return PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif','isRemoteEnabled' => true,'isHtml5ParserEnabled' => true])->loadView('pages.akademik.cetak_album', [
- //            // "prodi"=> ProdiAlumni::all(),
- //        "mahasiswa" => $Pm,
- //            // "album" => $album
- //    ])->stream();
 
-      // $pdf = PDF::loadView('pages.akademik.cetak_album', [
-            // "prodi"=> ProdiAlumni::all(),
-        // "mahasiswa" => $Pm,
-            // "album" => $album
-    // ])->setPaper('a4', 'potrait')->setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif'])->setBasePath();
-    // 'isRemoteEnabled' => true]);
-     // 'isHtml5ParserEnabled' => true]);
-// ini_set('max_execution_time', 300); //300 seconds = 5 minutes 
-
-
-// return $pdf->stream('Album Angkatan/'.$id.'.pdf');
         $pdf = PDF::loadView('pages.akademik.cetak_album',
 [
-            // "prodi"=> ProdiAlumni::all(),
         "mahasiswa" => $Pm,
             "album" => $album,
             "prodi" => $prodi
 ]);
-        // ->setOptions(['cover', View::make('pages.akademik.cetak_cover_album', $album)]);
-// share data to view
-       // view()->share(['mahasiswa',$Pm , 'album' , $album]);
-       // $pdf = PDF::loadView('pages.akademik.cetak_album', [$Pm , $album]);
-
-      // download PDF file with download method
-      // return $pdf->download('Album Angkatan/'.$id.'.pdf');
-        // $pdf->setOption('cover', View::make('pages.akademik.cetak_album', $album));
+      
         set_time_limit(300);
 
        return $pdf->stream('Album Angkatan/'.$id.'.pdf');
+//         return view('pages.akademik.cetak_album',
+// [
+//         "mahasiswa" => $Pm,
+//             "album" => $album,
+//             "prodi" => $prodi
+// ]);
 
    }
 
